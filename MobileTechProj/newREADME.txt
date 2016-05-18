@@ -1,2 +1,2 @@
-screw you nic! hahahahahah
+Tom is a dick! hahahahahah
 stop changing my code asshole
