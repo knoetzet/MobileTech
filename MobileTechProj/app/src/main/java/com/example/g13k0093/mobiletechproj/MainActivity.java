@@ -1,6 +1,7 @@
 package com.example.g13k0093.mobiletechproj;
 
 import android.app.Activity;
+import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -12,16 +13,21 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int PICK_CONTACT_REQUEST = 1;
+
+    @Override
+    public void registerComponentCallbacks(ComponentCallbacks callback) {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent login = new Intent(this.getApplicationContext(),LoginActivity.class);
+        startActivity(login);
     }
 
 
-
+//roarraor
 
 }
 
