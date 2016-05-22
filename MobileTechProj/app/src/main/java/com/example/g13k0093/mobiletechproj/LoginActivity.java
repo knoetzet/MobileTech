@@ -21,4 +21,11 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(reg);
     }
 
+
+
+    public void onLoginClick(View view){
+    // need to check register validity
+        Intent log = new Intent(this, CameraActivity.class);
+        startActivity(log);
+    }
 }
