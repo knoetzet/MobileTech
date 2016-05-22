@@ -20,5 +20,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onRegClick(View view){
         startActivity(reg);
     }
+    
 
 }
