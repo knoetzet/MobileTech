@@ -81,7 +81,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
             return;
         }
         Camera.Parameters parameters = camera.getParameters();
-        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+      //  parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
         camera.setParameters(parameters);
         try {
             camera.setPreviewDisplay(holder);
