@@ -13,7 +13,10 @@ import android.util.Size;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,8 +27,9 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
     SurfaceHolder holder;
     String tag;
     Camera.PictureCallback rawCallback;
+    Camera.PictureCallback jpegCallback;
+    Camera.ShutterCallback shutterCallback;
 
-    SurfaceHolder surfaceHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,43 +38,58 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
 
 
 
-        surfaceView = (SurfaceView)findViewById(R.id.surfaceView1);
-        holder = surfaceView.getHolder();
-        holder.addCallback(this);
-        holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        startcamera();
+        surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
 
+        holder = surfaceView.getHolder();
+        // Install a SurfaceHolder.Callback so we get notified when the
+        // underlying surface is created and destroyed.
+        holder.addCallback(this);
+        // deprecated setting, but required on Android versions prior to 3.0
+        holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
 
-
-
-
-
-
-    private void startcamera(){
-
-        try {
-            camera = Camera.open();
-            Camera.Parameters parameters = camera.getParameters();
-            //parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-            camera.setParameters(parameters);
-            camera.setPreviewDisplay(holder);
-            camera.startPreview();
-        }catch(Exception error){
-            Log.e(tag, "start_camera: " + error);
+    public void refreshCamera() {
+        if (holder.getSurface() == null) {
+            // preview surface does not exist
             return;
         }
+        try {
 
+            camera.stopPreview();
+        } catch (Exception error) {
+        }
+        try {
+            camera.setPreviewDisplay(holder);
+            camera.startPreview();
+        } catch (Exception error) {
 
+        }
     }
 
+
     public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
-        // TODO Auto-generated method stub
+        refreshCamera();
     }
 
     public void surfaceCreated(SurfaceHolder holder) {
-        // TODO Auto-generated method stub
+        try{
+            camera = Camera.open();
+
+        }catch(RuntimeException error){
+            System.err.println(error);
+            return;
+        }
+        Camera.Parameters parameters = camera.getParameters();
+        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+        camera.setParameters(parameters);
+        try {
+            camera.setPreviewDisplay(holder);
+            camera.startPreview();
+        }catch(Exception error){
+            System.err.println(error);
+            return;
+        }
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
