@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.g13k0093.mobiletechproj.CapturedActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Now"
+        android:id="@+id/editnow"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="77dp"
+        android:onClick="onNowClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editlater"
+        android:layout_alignTop="@+id/editnow"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="Later"
+        android:onClick="onLaterClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next Picture"
+        android:id="@+id/nextpicture"
+        android:layout_above="@+id/editlater"
+        android:layout_alignRight="@+id/editlater"
+        android:layout_alignEnd="@+id/editlater"
+        android:onClick="onNextPictureClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retake"
+        android:id="@+id/retake"
+        android:layout_above="@+id/editnow"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onRetakeClick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="When would you like to add extra information. "
+        android:id="@+id/textView4"
+        android:autoText="false"
+        android:editable="false"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

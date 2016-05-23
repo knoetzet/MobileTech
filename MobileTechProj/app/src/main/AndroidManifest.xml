@@ -16,7 +16,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".CameraActivity" />
+        <activity android:name=".CapturedActivity" />
+        <activity android:name=".EditRecordActivity" />
+        <activity android:name=".RecordsActivity"></activity>
     </application>
 
 </manifest>
