@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
+
     String regUrl = "http://vmus.adu.org.za/dt_registration.php";
     Intent reg = new Intent(Intent.ACTION_VIEW, Uri.parse(regUrl));
     private static final int REQUEST_CAMERARESULT = 201;
@@ -72,6 +73,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginClick(View view) {
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (this.getApplicationContext().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {

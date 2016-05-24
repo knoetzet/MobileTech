@@ -27,7 +27,8 @@
         <activity android:name=".CapturedActivity" />
         <activity android:name=".EditRecordActivity" />
         <activity android:name=".RecordsActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>
