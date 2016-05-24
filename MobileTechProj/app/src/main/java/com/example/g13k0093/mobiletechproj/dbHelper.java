@@ -22,7 +22,7 @@ public class dbHelper extends SQLiteOpenHelper {
     public static final String DETAILS = "details";
 
     private static final String RECORD_TABLE_CREATE =
-            "CREATE TABLE " + RECORD_TABLE_NAME + " (" +ID + " INT PRIMARY KEY, "
+            "CREATE TABLE " + RECORD_TABLE_NAME + " (" +ID + " INT PRIMARY KEY AUTO_INCREMENT, "
                     + TITLE + " TEXT, "
                     + PHOTO + " TEXT,"
                     + PROJECT + " TEXT,"
@@ -44,10 +44,9 @@ public class dbHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insert(int id, String title,String photo, String project, String details){
+    public boolean insert(String title,String photo, String project, String details){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ID,id);
         values.put(TITLE,title);
         values.put(PHOTO,photo);
         values.put(PROJECT,project);
@@ -56,10 +55,9 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean update(int id, String title,String photo, String project, String details){
+    public boolean update(String title,String photo, String project, String details){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ID,id);
         values.put(TITLE,title);
         values.put(PHOTO,photo);
         values.put(PROJECT,project);
@@ -82,7 +80,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return myDB.rawQuery(query,null);
     }
 
-    public Cursor getOneRecord(int id){
+    public Cursor getRecord(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from " + RECORD_TABLE_NAME + " where id="+id+"", null );
         return res;
