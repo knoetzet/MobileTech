@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERARESULT = 201;
     final int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     @TargetApi(23)
     private void useCameraFor23() {
         int hasCameraPermission = checkSelfPermission(Manifest.permission.CAMERA);
+
 
         if (hasCameraPermission != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[] {Manifest.permission.CAMERA}, REQUEST_CODE_ASK_PERMISSIONS);
