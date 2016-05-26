@@ -62,10 +62,10 @@ public class dbHelper extends SQLiteOpenHelper {
         values.put(PHOTO,photo);
         values.put(PROJECT,project);
         values.put(DETAILS,details);
-        myDB.update("contacts", values, "id = ? ", new String[] { Integer.toString(id)});
+        myDB.update("contacts", values, "title = ? ", new String[] { title });
         return true;
-
     }
+
     public long deleteRecord(int id){
         SQLiteDatabase myDB = this.getWritableDatabase();
         return myDB.delete(RECORD_TABLE_NAME,
