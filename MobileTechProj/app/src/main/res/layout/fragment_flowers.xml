@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:layout_centerInParent="true"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Okay"
+            android:id="@+id/button7"
+            android:layout_marginRight="75dp"
+            android:layout_marginEnd="75dp"
+            android:layout_alignBottom="@+id/checkBox3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flowers"
+            android:id="@+id/checkBox"
+            android:checked="false"
+            android:layout_marginRight="61dp"
+            android:layout_marginEnd="61dp"
+            android:layout_above="@+id/checkBox2"
+            android:layout_toLeftOf="@+id/button7"
+            android:layout_toStartOf="@+id/button7" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fruits"
+            android:id="@+id/checkBox2"
+            android:checked="false"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/checkBox"
+            android:layout_alignStart="@+id/checkBox" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scent"
+            android:id="@+id/checkBox3"
+            android:checked="false"
+            android:layout_below="@+id/checkBox2"
+            android:layout_alignLeft="@+id/checkBox2"
+            android:layout_alignStart="@+id/checkBox2" />
+
+    </RelativeLayout>
+
+</LinearLayout>

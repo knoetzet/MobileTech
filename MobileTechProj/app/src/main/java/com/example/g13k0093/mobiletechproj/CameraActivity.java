@@ -201,7 +201,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
             public void onClick(View view){
                 Toast.makeText(getBaseContext(),  "are we here", Toast.LENGTH_LONG).show();
 
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener1);
+             //   locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener1);
             }
         });
       //  Intent cap = new Intent(this, CapturedActivity.class);
@@ -210,8 +210,8 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
 
 
     public void location(View view){
-        String location = locationManager.getLastKnownLocation();
-        Toast.makeText(getBaseContext(),  location, Toast.LENGTH_LONG).show();
+       // String location = locationManager.getLastKnownLocation();
+      //  Toast.makeText(getBaseContext(),  location, Toast.LENGTH_LONG).show();
     }
 
 }

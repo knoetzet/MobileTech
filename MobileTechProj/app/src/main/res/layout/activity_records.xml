@@ -7,12 +7,31 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.g13k0093.mobiletechproj.RecordsActivity">
+    tools:context="com.example.g13k0093.mobiletechproj.RecordsActivity"
+    android:weightSum="1">
+
+
 
 
     <ListView
         android:layout_width="wrap_content"
+        android:layout_height="374dp"
+        android:id="@+id/listView" />
+
+    <Button
+    style="?android:attr/buttonStyleSmall"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Camera"
+    android:id="@+id/camerabutton"
+    android:layout_gravity="bottom" />
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_weight="1" />
+        android:text="New Record"
+        android:id="@+id/newrecbutton"
+        android:layout_gravity="bottom" />
+
+
 </LinearLayout>

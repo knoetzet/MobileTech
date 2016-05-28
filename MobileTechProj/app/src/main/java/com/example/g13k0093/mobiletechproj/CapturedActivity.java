@@ -70,8 +70,11 @@ public class CapturedActivity extends AppCompatActivity  {
         Cursor cursor  = helper.getRecord(1);
         cursor.moveToFirst();
        display.setText(cursor.getString(cursor.getColumnIndex(helper.TITLE)));
+    }
 
-
+    public void onMapClick(View view){
+        Intent map = new Intent(this, MapsActivity.class);
+        startActivity(map);
     }
 
     public void onRetakeClick(View view){

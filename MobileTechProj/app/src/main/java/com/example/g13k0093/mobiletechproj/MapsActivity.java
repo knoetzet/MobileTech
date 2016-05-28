@@ -2,17 +2,22 @@ package com.example.g13k0093.mobiletechproj;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    public Marker marker;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +26,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
         mapFragment.getMapAsync(this);
+        tv = (TextView) findViewById(R.id.textView9);
     }
 
 
@@ -40,6 +47,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng SA = new LatLng(-30.5595,  22.9375);
+        LatLng userSelect ;
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(SA));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(5));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng point) {
+                double roundOffLat = Math.round(point.latitude * 1000.0) / 1000.0;
+                double roundOffLong = Math.round(point.longitude * 1000.0) / 1000.0;
+                String roundCoOrd = String.valueOf(roundOffLat) + " , " + String.valueOf(roundOffLong);
+                tv.setText(roundCoOrd);
+                if(marker!=null){
+                    marker.remove();
+                }
+                marker = mMap.addMarker(new MarkerOptions()
+                        .position(point)
+                        .draggable(true).visible(true));
+                Toast.makeText(getApplicationContext(), point.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

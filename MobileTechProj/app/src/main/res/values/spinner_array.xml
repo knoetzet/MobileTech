@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="menu_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="project_array">
+        <item> BirdPIX (Bird pictures) </item>
+        <item> BOP (Birds with odd plumages) </item>
+        <item> DungBeetleMAP (Dung Beetles) </item>
+        <item> EchinoMAP (Echinoderma) </item>
+        <item> FishMAP (freshwater fish) </item>
+        <item> FrogMAP (Frogs) </item>
+        <item> LacewingMAP (Neuroptera: Lacewings) </item>
+        <item> LepiMAP (Butterflies and Moths) </item>
+        <item> MammalMAP (Mammals) </item>
+        <item> MushroomMAP (Mushrooms) </item>
+        <item> OdonataMAP (Dragonflies and Damselflies) </item>
+        <item> OrchidMAP (Orchids) </item>
+        <item> PHOWN (Weaver nests) </item>
+        <item> ReptileMAP (Reptiles) </item>
+        <item> ScorpionMAP (Scorpions) </item>
+        <item> SpiderMAP (Spiders)  </item>
+        <item> TreeMAP (Tree Atlas) </item>
+    </string-array>
+    <string-array name="optional_array">
+        <item> Country </item>
+        <item> Province </item>
+        <item> Closest Town </item>
+        <item> Locality Description </item>
+        <item> Environmental Description </item>
+        <item> Specimen Identity </item>
+        <item> Additional notes </item>
+        <item> Flowers, Fruit and Scent </item>
+        <item> Number of Individuals </item>
+        <item> Natural or Cultivated </item>
+        <item> Growth Form </item>
+        <item> Nest Count </item>
+        <item> Nest Site </item>
+
     </string-array>
 </resources>
