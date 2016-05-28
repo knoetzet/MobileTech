@@ -23,6 +23,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,6 +38,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
     TextView texty;
 
     Button button;
+
 
     static Camera camera = null;
     SurfaceView surfaceView;
@@ -93,6 +96,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
             }
 
         };
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (this.getApplicationContext().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -183,6 +187,10 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+  /*  protected void startLocationUpdates() {
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient, mLocationRequest, this);
+    }*/
 
 
     public void hello(){
@@ -199,4 +207,11 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
       //  Intent cap = new Intent(this, CapturedActivity.class);
        // startActivity(cap);
     }
+
+
+    public void location(View view){
+        String location = locationManager.getLastKnownLocation();
+        Toast.makeText(getBaseContext(),  location, Toast.LENGTH_LONG).show();
+    }
+
 }
