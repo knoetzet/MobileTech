@@ -14,22 +14,25 @@
         android:layout_height="wrap_content"
         android:text="Capture"
         android:id="@+id/btn_start"
-        android:onClick="onCaptureClick"
+        android:onClick="Capture"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <SurfaceView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/surfaceView1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/btn_start"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="0dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,5 +52,6 @@
         android:id="@+id/blahbutton"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/textView6"
-        android:layout_toStartOf="@+id/textView6" />
+        android:layout_toStartOf="@+id/textView6"
+        android:onClick="Record" />
 </RelativeLayout>

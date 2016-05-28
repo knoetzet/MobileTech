@@ -15,22 +15,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:id="@+id/button"
+        android:id="@+id/loginbutton"
         android:layout_marginBottom="141dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onLoginClick" />
+        android:onClick="Camera" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/button2"
-        android:layout_alignTop="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_marginTop="57dp"
-        android:onClick="onRegClick" />
+        android:layout_marginTop="64dp"
+        android:onClick="onRegClick"
+        android:layout_alignTop="@+id/loginbutton"
+        android:layout_alignLeft="@+id/loginbutton"
+        android:layout_alignStart="@+id/loginbutton" />
 
     <EditText
         android:layout_width="wrap_content"

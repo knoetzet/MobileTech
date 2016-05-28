@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -12,9 +13,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity  {
 
 
     String regUrl = "http://vmus.adu.org.za/dt_registration.php";
@@ -23,11 +26,15 @@ public class LoginActivity extends AppCompatActivity {
     final int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
 
+
+
+
+    Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         int currentAPIVersion = Build.VERSION.SDK_INT;
 
@@ -35,8 +42,10 @@ public class LoginActivity extends AppCompatActivity {
         if (currentAPIVersion >= Build.VERSION_CODES.M) {
             useCameraFor23();
         } else {
-            useCamera();
+
         }
+
+
 
     }
 
@@ -59,14 +68,13 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        useCamera();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == REQUEST_CODE_ASK_PERMISSIONS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                useCamera();
+
                 return;
             }
         }
@@ -95,8 +103,37 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void useCamera() {
-        Intent log = new Intent(this, CameraActivity.class);
-        startActivity(log);
+
+        public void Camera(View view){
+
+            // json parsing extra
+            String email = ((EditText)findViewById(R.id.editText2)).getText().toString();
+            String ADUid = ((EditText)findViewById(R.id.editText)).getText().toString();
+            String password = ((EditText)findViewById(R.id.editText3)).getText().toString(); //encrypted
+
+            String http = "http://api.adu.org.za/validation/user/login?API_KEY=45d8dc528fc799f6d154497a6fe1f272&userid=90000&email=bobbytwoshoes@anemailserver.com&passid=a9c4cef5735770e657b7c25b9dcb807b";
+                    //"http://api.adu.org.za/validation/user/login?API_KEY=" + "&userid=" + ADUid + "&email=" + email + "&passid=" + password;
+
+
+            Intent log = new Intent(Intent.ACTION_VIEW, Uri.parse(http));
+
+            //example ---- http://api.adu.org.za/validation/user/login?API_KEY=45d8dc528fc799f6d154497a6fe1f272&userid=90000&email=bobbytwoshoes@anemailserver.com&passid=a9c4cef5735770e657b7c25b9dcb807b
+
+
+           /* if(return is success) {
+
+                    Save details and go to....
+
+
+                Intent rec = new Intent(this, RecordsActivity.class);
+                startActivity(rec);
+            }else
+            {
+                Toast wrong login details...
+
+            }*/
+        }
+
+
     }
-}
+
