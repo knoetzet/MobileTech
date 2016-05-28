@@ -19,13 +19,16 @@ public class dbHelper extends SQLiteOpenHelper {
     public static final String TITLE = "title";
     public static final String PHOTO = "photo";
     public static final String PROJECT = "project";
+    public static final String STATUS = "status";
     public static final String DETAILS = "details";
 
+
     private static final String RECORD_TABLE_CREATE =
-            "CREATE TABLE " + RECORD_TABLE_NAME + " (" +ID + " INT PRIMARY KEY, "
+            "CREATE TABLE IF NOT EXISTS" + RECORD_TABLE_NAME + " (" +ID + " INT PRIMARY KEY AUTO_INCREMENT, "
                     + TITLE + " TEXT, "
                     + PHOTO + " TEXT,"
                     + PROJECT + " TEXT,"
+                    + STATUS+ " TEXT,"
                     + DETAILS + " TEXT);";
 
     public dbHelper (Context context){
@@ -44,30 +47,30 @@ public class dbHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insert(int id, String title,String photo, String project, String details){
+    public boolean insert(String title,String photo, String project,String status, String details){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ID,id);
         values.put(TITLE,title);
         values.put(PHOTO,photo);
         values.put(PROJECT,project);
+        values.put(STATUS,status);
         values.put(DETAILS,details);
         myDB.insert(RECORD_TABLE_NAME,null,values);
         return true;
     }
 
-    public boolean update(int id, String title,String photo, String project, String details){
+    public boolean update(String title,String photo, String project,String status, String details){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ID,id);
         values.put(TITLE,title);
         values.put(PHOTO,photo);
         values.put(PROJECT,project);
+        values.put(STATUS,project);
         values.put(DETAILS,details);
-        myDB.update("contacts", values, "id = ? ", new String[] { Integer.toString(id)});
+        myDB.update("contacts", values, "title = ? ", new String[] { title });
         return true;
-
     }
+
     public long deleteRecord(int id){
         SQLiteDatabase myDB = this.getWritableDatabase();
         return myDB.delete(RECORD_TABLE_NAME,
@@ -82,7 +85,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return myDB.rawQuery(query,null);
     }
 
-    public Cursor getOneRecord(int id){
+    public Cursor getRecord(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from " + RECORD_TABLE_NAME + " where id="+id+"", null );
         return res;

@@ -3,4 +3,6 @@
     <string name="action_recordlist">record list</string>
     <string name="action_settings">settings</string>
     <string name="action_about">about</string>
+    <string name="about_text"></string>
+    <string name="title_activity_maps">Map</string>
 </resources>

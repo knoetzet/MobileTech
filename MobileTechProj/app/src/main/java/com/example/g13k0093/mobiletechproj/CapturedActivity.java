@@ -67,7 +67,7 @@ public class CapturedActivity extends AppCompatActivity  {
         //helper.insert(1,"titty","phot","proj","tails");
         TextView display = (TextView) findViewById(R.id.textView5);
       //  Toast.makeText(this.getApplicationContext(),"FUCK",Toast.LENGTH_LONG).show();
-        Cursor cursor  = helper.getOneRecord(1);
+        Cursor cursor  = helper.getRecord(1);
         cursor.moveToFirst();
        display.setText(cursor.getString(cursor.getColumnIndex(helper.TITLE)));
 
