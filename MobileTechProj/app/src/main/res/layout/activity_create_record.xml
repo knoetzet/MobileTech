@@ -29,7 +29,7 @@
         android:id="@+id/imageView"
         android:src="@drawable/placeholder"
             android:clickable="true"
-            android:onClick="ImageClick" />
+            android:onClick="ImageClick1" />
 
         <ImageView
             android:layout_width="100dp"

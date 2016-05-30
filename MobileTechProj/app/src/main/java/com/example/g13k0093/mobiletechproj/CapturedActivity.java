@@ -36,12 +36,15 @@ public class CapturedActivity extends AppCompatActivity  {
     Cursor cursor;
     ImageView pic;
     String getfilepath;
+    dbHelper db;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_captured);
-
+        id = getIntent().getIntExtra("ID",0);
+        db = new dbHelper(this);
         getfilepath = getIntent().getStringExtra("pic");
         if(getfilepath != null){
             String[] done = getfilepath.split("file://");
@@ -54,21 +57,14 @@ public class CapturedActivity extends AppCompatActivity  {
 
 
     public void getImage() {
-
-       // Toast.makeText(getApplicationContext(),getfilepath,Toast.LENGTH_LONG).show();
-       // String[] done = name.split("/");
-       // Toast.makeText(getApplicationContext(),done[0],Toast.LENGTH_LONG).show();
-
         File imgFile = new File(getfilepath);
 
         if (imgFile.exists()) {
             pic = (ImageView) findViewById(R.id.captureimage);
-          //  pic.setImageURI(Uri.parse("file:///storage/emulated/0/Pictures/BioMappImages/IMG_20160530_115309.jpg"));
 
             Bitmap bmImg = BitmapFactory.decodeFile(getfilepath);
             Bitmap bitmap = Bitmap.createScaledBitmap(bmImg, 300, 300, true);
             pic.setImageBitmap(bitmap);
-
         }
     }
 
@@ -107,8 +103,8 @@ public class CapturedActivity extends AppCompatActivity  {
 
     public void onNowClick(View view){
 
-        Intent now = new Intent(this, EditRecordActivity.class);
-        //now.putExtra("imageuri", )
+        db.updateOne(id,dbHelper.PHOTO,getfilepath);
+        Intent now = new Intent(this, CreateRecordActivity.class);
         startActivity(now);
     }
     public void onLaterClick(View view){
@@ -116,7 +112,7 @@ public class CapturedActivity extends AppCompatActivity  {
         //dbHelper db = new dbHelper(this);
        // db.insert(0,"none",null,null,"good job",null);
 
-        Intent later = new Intent(this, RecordsActivity.class);
+        Intent later = new Intent(this, CreateRecordActivity.class);
         startActivity(later);
     }
 
