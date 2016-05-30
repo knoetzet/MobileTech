@@ -38,13 +38,15 @@ public class CreateRecordActivity extends AppCompatActivity {
         db = new dbHelper(this);
         id = getIntent().getIntExtra("ID",0);
         cursor = db.getRecord(id);
-        String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO));
 
+       /* if(cursor.getColumnIndex(dbHelper.PHOTO) != -1) {
+            String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO));
+        }*/
         img1 = (ImageView)findViewById(R.id.imageView);
 
 
-        Toast.makeText(getApplicationContext(),photo1uri,Toast.LENGTH_SHORT).show();
-        if(photo1uri != null){
+        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+      /*  if(photo1uri != null){
             File imgFile = new File(photo1uri);
 
             if (imgFile.exists()) {
@@ -54,7 +56,7 @@ public class CreateRecordActivity extends AppCompatActivity {
             }
         }else{
             //get uri from gallery
-        }
+        }*/
 
 
     }

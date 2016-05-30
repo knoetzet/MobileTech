@@ -111,7 +111,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
     public void updateOne(int id, String column, String value){
         SQLiteDatabase myDB = this.getWritableDatabase();
-        myDB.execSQL("UPDATE records SET " + column + " = " + value + " WHERE " + ID + " = " + id);
+        myDB.execSQL("UPDATE records SET " + column + " = '" + value + "' WHERE " + ID + " = " + id);
     }
 
     public long deleteRecord(int id){
@@ -140,7 +140,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
     public Cursor getRecord(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from " + RECORD_TABLE_NAME + " where id="+id+"", null );
+        Cursor res =  db.rawQuery( "select * from " + RECORD_TABLE_NAME + " where _id="+id+"", null );
         return res;
     }
 }

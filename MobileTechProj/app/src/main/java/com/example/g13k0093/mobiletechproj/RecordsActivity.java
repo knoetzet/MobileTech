@@ -60,7 +60,7 @@ public class RecordsActivity extends AppCompatActivity {
     public void newRecord(View view){
 
         int id = dbhelper.getRecordsCount() + 1;
-        dbhelper.insert(id,"title","required fields missing");
+        dbhelper.insert(id,"title" + id,"required fields missing");
         Intent createIntent = new Intent(getApplicationContext(), CreateRecordActivity.class);
         createIntent.putExtra("ID",id);
         startActivity(createIntent);
