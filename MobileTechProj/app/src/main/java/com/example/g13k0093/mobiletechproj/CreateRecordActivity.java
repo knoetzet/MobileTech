@@ -55,6 +55,7 @@ public class CreateRecordActivity extends AppCompatActivity {
         img3.setRotation(90);
 
         title = (TextView) findViewById(R.id.textView5);
+
         if (cursor.moveToFirst()) {
             String titlefromdb = cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.TITLE));
             title.setText(titlefromdb);
@@ -192,5 +193,10 @@ public class CreateRecordActivity extends AppCompatActivity {
         addInfo.putExtra("ID",id);
         addInfo.putExtra("thumbnail",thumbnail);
         startActivity(addInfo);
+    }
+
+    public void onDone(View view){
+        Intent recordIntent = new Intent(this.getApplicationContext(),RecordsActivity.class);
+        startActivity(recordIntent);
     }
 }

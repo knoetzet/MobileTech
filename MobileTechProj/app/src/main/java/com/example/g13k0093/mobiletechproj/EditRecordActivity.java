@@ -1,6 +1,7 @@
 package com.example.g13k0093.mobiletechproj;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,11 +61,20 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
 
         db = new dbHelper(this);
 
-        id = getIntent().getIntExtra("ID",-1);
+        id = getIntent().getIntExtra("ID",1);
+
+
 
         projectList = (Spinner) findViewById(R.id.spinner);
         optionalList = (Spinner) findViewById(R.id.spinner2);
         title = (EditText) findViewById(R.id.editText6);
+
+        Cursor cursor = db.getRecord(id);
+
+        if (cursor.moveToFirst()) {
+            String titlefromdb = cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.TITLE));
+            title.setText(titlefromdb);
+        }
 
         ArrayAdapter<CharSequence> projectadapter = ArrayAdapter.createFromResource(this,R.array.project_array,R.layout.support_simple_spinner_dropdown_item);
         ArrayAdapter<CharSequence> optionaladapter = ArrayAdapter.createFromResource(this,R.array.optional_array,R.layout.support_simple_spinner_dropdown_item);
@@ -209,12 +219,17 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
         }
 
     }
+
+    public  void onMapClicked(View view){
+        Intent mapIntent = new Intent(this.getApplicationContext(),MapsActivity.class);
+        mapIntent.putExtra("ID",id);
+        startActivity(mapIntent);
+    }
     public void onSaveClicked(View view){
-
         db.updateOne(id,dbHelper.TITLE,title.getText().toString());
-        Intent recordsIntent = new Intent(this.getApplicationContext(),RecordsActivity.class);
-        startActivity(recordsIntent);
-
+        Intent recordIntent = new Intent(this.getApplicationContext(),CreateRecordActivity.class);
+        recordIntent.putExtra("ID",id);
+        startActivity(recordIntent);
     }
 
 

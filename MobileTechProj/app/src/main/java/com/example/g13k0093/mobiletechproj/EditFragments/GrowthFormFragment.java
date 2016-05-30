@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.example.g13k0093.mobiletechproj.R;
 
-public class GrowthFormFragment extends Fragment implements View.OnClickListener{
+public class GrowthFormFragment extends Fragment /*implements View.OnClickListener*/{
 
     // incomplete add spinner list!
 
@@ -22,7 +22,7 @@ public class GrowthFormFragment extends Fragment implements View.OnClickListener
         return new GrowthFormFragment();
     }
 
-    public interface OnButtonClickedListener {
+   /* public interface OnButtonClickedListener {
         public void onButtonClicked(String text);
     }
     OnButtonClickedListener mCallback;
@@ -36,20 +36,20 @@ public class GrowthFormFragment extends Fragment implements View.OnClickListener
             throw new ClassCastException(activity.toString()
                     + " must implement OnButtonClickedListener");
         }
-    }
+    }*/
 
     public GrowthFormFragment(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_growth,container,false);
-        Button clicked = (Button) view.findViewById(R.id.button4);
-        clicked.setOnClickListener(this);
+       /* Button clicked = (Button) view.findViewById(R.id.button4);
+        clicked.setOnClickListener(this);*/
         return view;
     }
 
-    @Override
+   /* @Override
     public void onClick(View v) {
 
-    }
+    }*/
 }

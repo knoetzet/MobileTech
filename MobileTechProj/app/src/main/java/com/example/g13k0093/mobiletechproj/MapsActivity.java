@@ -1,7 +1,9 @@
 package com.example.g13k0093.mobiletechproj;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     public Marker marker;
     private TextView tv;
+    int id;
+    dbHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
+        id = getIntent().getIntExtra("ID",-1);
+        db = new dbHelper(this.getApplication());
         mapFragment.getMapAsync(this);
         tv = (TextView) findViewById(R.id.textView9);
     }
@@ -67,4 +73,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+    public void setCoordsAndReturn(View view){
+        if(marker != null){
+            db.updateOne(id,dbHelper.LAT,String.valueOf(marker.getPosition().latitude));
+            db.updateOne(id,dbHelper.LONG,String.valueOf(marker.getPosition().longitude));
+        }
+        Intent editIntent = new Intent(getApplicationContext(),EditRecordActivity.class);
+        editIntent.putExtra("ID",id);
+        startActivity(editIntent);
+    }
+
 }

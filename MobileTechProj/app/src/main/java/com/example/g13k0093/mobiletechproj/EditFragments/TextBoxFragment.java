@@ -20,7 +20,7 @@ import com.example.g13k0093.mobiletechproj.R;
 public class TextBoxFragment extends Fragment implements View.OnClickListener {
 
     public interface OnButtonClickedListener {
-        public void onButtonClicked(String text);
+        public void OnButtonClicked(String text);
     }
 
     OnButtonClickedListener mCallback;
@@ -60,6 +60,6 @@ public class TextBoxFragment extends Fragment implements View.OnClickListener {
 
     public void onClick(View view) {
         // Send the event to the host activity
-       mCallback.onButtonClicked(theTextBox.getText().toString());
+       mCallback.OnButtonClicked(theTextBox.getText().toString());
     }
 }

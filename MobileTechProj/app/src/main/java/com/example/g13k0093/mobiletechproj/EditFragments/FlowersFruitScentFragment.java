@@ -16,18 +16,18 @@ import android.widget.CheckBox;
 import com.example.g13k0093.mobiletechproj.R;
 
 
-public class FlowersFruitScentFragment extends Fragment implements View.OnClickListener {
+public class FlowersFruitScentFragment extends Fragment /*implements View.OnClickListener*/ {
 
-    public interface OnButtonClickedListener {
+    /*public interface OnButtonClickedListener {
         public void onButtonClicked(String text);
-    }
+    }*/
 
-    OnButtonClickedListener mCallback;
+   // OnButtonClickedListener mCallback;
     CheckBox flowers;
     CheckBox fruit;
     CheckBox scent;
 
-    @Override
+   /* @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
@@ -36,7 +36,7 @@ public class FlowersFruitScentFragment extends Fragment implements View.OnClickL
             throw new ClassCastException(activity.toString()
                     + " must implement OnButtonClickedListener");
         }
-    }
+    }*/
 
     public static FlowersFruitScentFragment newInstance() {
         return new FlowersFruitScentFragment();
@@ -47,8 +47,8 @@ public class FlowersFruitScentFragment extends Fragment implements View.OnClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_flowers,container,false);
-        Button button = (Button) view.findViewById(R.id.button7);
-        button.setOnClickListener(this);
+       /* Button button = (Button) view.findViewById(R.id.button7);
+        button.setOnClickListener(this);*/
 
         flowers = (CheckBox) view.findViewById(R.id.checkBox);
         fruit = (CheckBox) view.findViewById(R.id.checkBox2);
@@ -57,7 +57,7 @@ public class FlowersFruitScentFragment extends Fragment implements View.OnClickL
         return view;
     }
 
-    public void onClick(View view) {
+   /* public void onClick(View view) {
         // Send the event to the host activity
         String text = "";
         if(flowers.isChecked()) text += "flowers present;";
@@ -65,5 +65,5 @@ public class FlowersFruitScentFragment extends Fragment implements View.OnClickL
         if(scent.isChecked()) text += "scent present;";
 
         mCallback.onButtonClicked(text);
-    }
+    }*/
 }
