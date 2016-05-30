@@ -100,10 +100,12 @@ public class CapturedActivity extends AppCompatActivity  {
                 startActivity(rec);
                 return true;
             case R.id.action_settings:
-                // User chose the "Settings" item, show the app settings UI...
+                Intent set = new Intent(this, SettingsActivity.class);
+                startActivity(set);
                 return true;
             case R.id.action_about:
-                // User chose the "About" item, show the app about...
+                Intent about = new Intent(this, AboutActivity.class);
+                startActivity(about);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

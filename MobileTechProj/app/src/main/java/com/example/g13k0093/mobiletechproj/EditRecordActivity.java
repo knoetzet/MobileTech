@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
@@ -158,6 +160,12 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
         });
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -167,10 +175,12 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
                 startActivity(rec);
                 return true;
             case R.id.action_settings:
-                // User chose the "Settings" item, show the app settings UI...
+                Intent set = new Intent(this, SettingsActivity.class);
+                startActivity(set);
                 return true;
             case R.id.action_about:
-                // User chose the "About" item, show the app about...
+                Intent about = new Intent(this, AboutActivity.class);
+                startActivity(about);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
