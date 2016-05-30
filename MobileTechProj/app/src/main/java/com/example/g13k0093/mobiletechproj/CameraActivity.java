@@ -44,6 +44,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
     public LocationManager locationManager;
     public LocationListener locationListener;
     TextView texty;
+    int id;
 
 
     //variables for database
@@ -72,7 +73,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
         setContentView(R.layout.activity_camera);
         texty = (TextView) findViewById(R.id.textView6);
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
-
+        id = getIntent().getIntExtra("ID",0);
         holder = surfaceView.getHolder();
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
@@ -368,6 +369,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
         Intent cap = new Intent(getApplicationContext(),CapturedActivity.class);
      //  Toast.makeText(getApplicationContext(),urio,Toast.LENGTH_LONG).show();
         cap.putExtra("pic",urio);
+        cap.putExtra("ID", id);
         startActivity(cap);
 
      //   camera.stopPreview();

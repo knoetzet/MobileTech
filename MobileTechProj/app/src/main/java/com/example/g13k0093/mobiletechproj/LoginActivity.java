@@ -79,11 +79,8 @@ public class LoginActivity extends AppCompatActivity {
 
         }
         preferencesuser = getSharedPreferences(myBioMappPREFERENCES,Context.MODE_PRIVATE );
-
         //check if user has logged in before.
             Check();
-
-
     }
 
 
@@ -91,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         if(preferencesuser != null) {
             String name = preferencesuser.getString("userid", "none");
             if (name != "none") {
-                Intent rec = new Intent(getApplicationContext(), CameraActivity.class);
+                Intent rec = new Intent(getApplicationContext(), CreateRecordActivity.class);
                 startActivity(rec);
             }
         }
@@ -233,9 +230,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
 
-
-                          //  NavigatetoHome();
-
                         }
                    else{
                             //error not correct details
@@ -252,17 +246,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-    public void NavigatetoHome()
-    {
-        Intent settingsIntent = new Intent(this, RecordsActivity.class);
-        settingsIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // clears the stack so back will close the app.
-        startActivity(settingsIntent);
-     //   Intent rec = new Intent(this.getApplicationContext(),CameraActivity.class);
-     //   startActivity(rec);
-    }
 }
 
 
