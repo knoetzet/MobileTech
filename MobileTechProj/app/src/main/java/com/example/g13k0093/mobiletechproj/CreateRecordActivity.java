@@ -39,13 +39,12 @@ public class CreateRecordActivity extends AppCompatActivity {
         id = getIntent().getIntExtra("ID",0);
         cursor = db.getRecord(id);
 
-       /* if(cursor.getColumnIndex(dbHelper.PHOTO) != -1) {
-            String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO));
-        }*/
+
+        //    String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO));
+
         img1 = (ImageView)findViewById(R.id.imageView);
 
-
-        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),photo1uri,Toast.LENGTH_SHORT).show();
       /*  if(photo1uri != null){
             File imgFile = new File(photo1uri);
 
@@ -99,6 +98,7 @@ public class CreateRecordActivity extends AppCompatActivity {
 
     public void ImageClick1(View view){
        open(view);
+        thumbnail =0;
     }
     public void ImageClick2(View view){
         open(view);
@@ -112,6 +112,7 @@ public class CreateRecordActivity extends AppCompatActivity {
     public void onAddInfo(View view){
         Intent addInfo = new Intent(getApplicationContext(),EditRecordActivity.class);
         addInfo.putExtra("ID",id);
+        addInfo.putExtra("thumbnail",thumbnail);
         startActivity(addInfo);
     }
 }
