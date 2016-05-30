@@ -39,7 +39,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:onClick="ImageClick" />
+            android:onClick="ImageClick2" />
 
         <ImageView
             android:layout_width="100dp"
@@ -48,7 +48,7 @@
             android:src="@drawable/placeholder"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:onClick="ImageClick" />
+            android:onClick="ImageClick3" />
     </RelativeLayout>
 
     <Button

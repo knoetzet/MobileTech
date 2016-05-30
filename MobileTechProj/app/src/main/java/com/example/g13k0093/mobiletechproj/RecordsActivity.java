@@ -40,23 +40,14 @@ public class RecordsActivity extends AppCompatActivity {
         lv.setAdapter(recordAdapter);
 
 
-      //  dbHelper db = new dbHelper(this);
-      //  db.insert("jl","hi");
-
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent editIntent = new Intent(getApplicationContext(), CreateRecordActivity.class);
-               // editIntent.putExtra("ID",position+1);
+                editIntent.putExtra("ID",position+1);
                 startActivity(editIntent);
             }
         });
-
-
-        //displayList();
-        //recordAdapter = new RecordListCursorAdapter(this.getApplicationContext(),cursor);
-        // lv.setAdapter(recordAdapter);
     }
 
     public void newRecord(View view){
@@ -64,7 +55,7 @@ public class RecordsActivity extends AppCompatActivity {
         int id = dbhelper.getRecordsCount() + 1;
         dbhelper.insert(id,"title" + id,"required fields missing");
         Intent createIntent = new Intent(getApplicationContext(), CreateRecordActivity.class);
-        //createIntent.putExtra("ID",id);
+        createIntent.putExtra("ID",id);
         startActivity(createIntent);
     }
 
