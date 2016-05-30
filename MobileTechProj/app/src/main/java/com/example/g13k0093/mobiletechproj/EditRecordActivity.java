@@ -143,6 +143,7 @@ public class EditRecordActivity extends AppCompatActivity /*implements TextBoxFr
             }
         });
     }
+
     public void onButtonClicked(){
 
     }

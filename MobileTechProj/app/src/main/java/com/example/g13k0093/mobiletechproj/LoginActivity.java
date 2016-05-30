@@ -53,13 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     Intent reg = new Intent(Intent.ACTION_VIEW, Uri.parse(regUrl));
     private static final int REQUEST_CAMERARESULT = 201;
     final int REQUEST_CODE_ASK_PERMISSIONS = 123;
-
-<<<<<<< HEAD
-    Button button;
-=======
-
     String preferencefile = "com.biomapp.useraccount.1";
-
     private SharedPreferences preferencesuser;
     private SharedPreferences.Editor preferenceEditor;
     public static final String myBioMappPREFERENCES = "BioMappUser";
@@ -67,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
->>>>>>> Nic-Login
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,7 +200,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //"http://api.adu.org.za/validation/user/login?API_KEY=" + "&userid=" + ADUid + "&email=" + email + "&passid=" + password;
         invokeWS(params);
-      //  Check();
+        Check();
     }
 
 
