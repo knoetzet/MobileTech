@@ -20,7 +20,7 @@ import com.example.g13k0093.mobiletechproj.EditFragments.NumberOfIndividualsFrag
 import com.example.g13k0093.mobiletechproj.EditFragments.ProvinceFragment;
 import com.example.g13k0093.mobiletechproj.EditFragments.TextBoxFragment;
 
-public class EditRecordActivity extends AppCompatActivity {
+public class EditRecordActivity extends AppCompatActivity /*implements TextBoxFragment.OnButtonClickedListener*/{
 
     CountriesFragment country = CountriesFragment.newInstance();
     FlowersFruitScentFragment flowers = FlowersFruitScentFragment.newInstance();
@@ -29,8 +29,16 @@ public class EditRecordActivity extends AppCompatActivity {
     NumberOfIndividualsFragment number = NumberOfIndividualsFragment.newInstance();
     ProvinceFragment province = ProvinceFragment.newInstance();
     EmptyFragment empty = EmptyFragment.newInstance();
-    TextBoxFragment textBox;
-    Button button;
+    TextBoxFragment textBoxTown;
+    TextBoxFragment textBoxLocal = TextBoxFragment.newInstance();
+    TextBoxFragment textBoxEnviro = TextBoxFragment.newInstance();
+    TextBoxFragment textBoxId = TextBoxFragment.newInstance();
+    TextBoxFragment textBoxNotes = TextBoxFragment.newInstance();
+    TextBoxFragment textBoxNestCount = TextBoxFragment.newInstance();
+    TextBoxFragment textBoxNestSite = TextBoxFragment.newInstance();
+    Button townButt;
+
+
 
     View view;
     Spinner projectList;
@@ -38,14 +46,21 @@ public class EditRecordActivity extends AppCompatActivity {
     int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_record);
+
         projectList = (Spinner) findViewById(R.id.spinner);
         optionalList = (Spinner) findViewById(R.id.spinner2);
+
         ArrayAdapter<CharSequence> projectadapter = ArrayAdapter.createFromResource(this,R.array.project_array,R.layout.support_simple_spinner_dropdown_item);
         ArrayAdapter<CharSequence> optionaladapter = ArrayAdapter.createFromResource(this,R.array.optional_array,R.layout.support_simple_spinner_dropdown_item);
+
         projectList.setAdapter(projectadapter);
         optionalList.setAdapter(optionaladapter);
+
+        textBoxTown = TextBoxFragment.newInstance();
+
 
         optionalList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -58,51 +73,66 @@ public class EditRecordActivity extends AppCompatActivity {
                         else getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,empty).commit();
                         break;
                      case 1:
+                         //country
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,country).commit();
                          break;
                     case 2:
+                        //province
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,province).commit();
                         break;
                     case 3:
-                        textBox = TextBoxFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBox).commit();
+                        //closest town
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBoxTown).commit();
+                        townButt = (Button) textBoxTown.getView().findViewById(R.id.button4);
+
+                        townButt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getApplicationContext(),"Works",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                         break;
                     case 4:
-                        textBox = TextBoxFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBox).commit();
+                        //locality
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBoxLocal).commit();
                         break;
                     case 5:
-                        textBox = TextBoxFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBox).commit();
+                        //environmental
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBoxEnviro).commit();
                         break;
                     case 6:
-                        textBox = TextBoxFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBox).commit();
+                        //specimen ID
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBoxId).commit();
 
                         break;
                     case 7:
-                        textBox = TextBoxFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBox).commit();
+                        //notes
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBoxNotes).commit();
                         break;
                     case 8:
+                        //flowers
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,flowers).commit();
                         break;
                     case 9:
+                        //no. individuals
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,number).commit();
                         break;
                     case 10:
+                        //natural/cultivated
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,natural).commit();
                         break;
                     case 11:
+                        //growth form
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,growth).commit();
                         break;
                     case 12:
-                        textBox = TextBoxFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBox).commit();
+                        //nest count
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBoxNestCount).commit();
                         break;
                     case 13:
-                        textBox = TextBoxFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBox).commit();
+                        //nest site
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBoxNestSite).commit();
                         break;
                 }
 
@@ -112,6 +142,9 @@ public class EditRecordActivity extends AppCompatActivity {
 
             }
         });
+    }
+    public void onButtonClicked(){
+
     }
 
 
