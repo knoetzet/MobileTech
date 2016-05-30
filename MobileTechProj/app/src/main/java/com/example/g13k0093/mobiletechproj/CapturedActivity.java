@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,13 +23,13 @@ public class CapturedActivity extends AppCompatActivity  {
 
     public dbHelper dbhelper;
     Cursor cursor;
-
+    ImageView pic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_captured);
-
+        pic =
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,17 +60,6 @@ public class CapturedActivity extends AppCompatActivity  {
 
     //Buttons
 
-    public void onDbClick(View view){
-
-
-        dbHelper helper = new dbHelper(this.getApplicationContext());
-        helper.insert(1,"title1","photo1","project1","status1","details1");
-        Toast.makeText(this.getApplicationContext(),"FUCK",Toast.LENGTH_LONG).show();
-
-
-    }
-
-
     public void onRetakeClick(View view){
         Intent retake = new Intent(this, CameraActivity.class);
         startActivity(retake);
@@ -85,6 +75,9 @@ public class CapturedActivity extends AppCompatActivity  {
         startActivity(now);
     }
     public void onLaterClick(View view){
+
+        //dbHelper db = new dbHelper(this);
+       // db.insert(0,"none",null,null,"good job",null);
 
         Intent later = new Intent(this, RecordsActivity.class);
         startActivity(later);
