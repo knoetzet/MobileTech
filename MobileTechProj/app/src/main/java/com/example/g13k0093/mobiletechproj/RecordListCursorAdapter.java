@@ -31,12 +31,13 @@ public class RecordListCursorAdapter extends CursorAdapter{
         TextView tvTitle = (TextView) view.findViewById(R.id.recordTitle);
         TextView tvStatus = (TextView) view.findViewById(R.id.recordStatus);
         ImageView imageView = (ImageView) view.findViewById(R.id.rowImage);
-        imageView.setRotation(90);
+
 
         String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
         String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
 
         if (cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1)) != null) {
+            imageView.setRotation(90);
             String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1));
             File imgFile = new File(photo1uri);
             if (imgFile.exists()) {

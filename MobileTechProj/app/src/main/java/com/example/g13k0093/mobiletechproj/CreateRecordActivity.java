@@ -1,18 +1,22 @@
 package com.example.g13k0093.mobiletechproj;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
@@ -36,6 +40,8 @@ public class CreateRecordActivity extends AppCompatActivity {
     ImageView img3;
     TextView title;
     String photo1uri;
+    File mediaFile;
+    String fromGallery;
 
 
     @Override
@@ -43,6 +49,7 @@ public class CreateRecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_record);
         db = new dbHelper(this.getApplicationContext());
+        fromGallery = null;
         thumbnail = getIntent().getIntExtra("thumbnail", -1);
         id = getIntent().getIntExtra("ID", 0);
         cursor = db.getRecord(id);
@@ -72,6 +79,12 @@ public class CreateRecordActivity extends AppCompatActivity {
             String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO3));
             getImage3(photo1uri);
         }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -143,20 +156,17 @@ public class CreateRecordActivity extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("Gallery", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                if(Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M)
-                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_READ_EXTERNAL_STORAGE);
-                        return;
-                    }
-                    else{
-                        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-                        startActivityForResult(galleryIntent,GET_GALLERY_PIC);
-                    }
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
+
+
             }
         });
 
-        alertDialogBuilder.setNeutralButton("Camera",new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton("Camera",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent cam = new Intent(getBaseContext(), CameraActivity.class);
@@ -165,12 +175,67 @@ public class CreateRecordActivity extends AppCompatActivity {
                 startActivity(cam);
             }
         });
+        alertDialogBuilder.setNeutralButton("Delete",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                if(thumbnail == 0) {
+                    db.updateOne(id, "photo1", "null");
+                }
+                if(thumbnail == 1) {
+                    db.updateOne(id, "photo2", "null");
+                }
+                if(thumbnail == 2) {
+                    db.updateOne(id, "photo3", "null");
+                }
+                Intent cret = new Intent(getBaseContext(), CreateRecordActivity.class);
+                cret.putExtra("ID", id);
+                startActivity(cret);
+            }
+        });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
     }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        if (resultCode == RESULT_OK) {
+
+            Uri selectedImageUri = data.getData();
+            mediaFile =  new File(getRealPathFromURI(selectedImageUri));
+            String hope = Uri.fromFile(mediaFile).toString();
+            if(hope != null){
+                String[] done = hope.split("file://");
+                fromGallery = done[1];
+                if(thumbnail == 0) {
+                    db.updateOne(id, "photo1", fromGallery);
+                }
+                if(thumbnail == 1) {
+                    db.updateOne(id, "photo2", fromGallery);
+                }
+                if(thumbnail == 2) {
+                    db.updateOne(id, "photo3", fromGallery);
+                }
+                Intent cret = new Intent(getBaseContext(), CreateRecordActivity.class);
+                cret.putExtra("ID", id);
+                startActivity(cret);
+            }
+        }
+    }
+    private String getRealPathFromURI(Uri contentURI) {         // from stack overflow I take no credit "cesards"
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) {
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
+    }
 
     public void ImageClick1(View view){
         thumbnail = 0;
