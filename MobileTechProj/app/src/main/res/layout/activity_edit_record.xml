@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".EditRecordActivity">
+    tools:context=".EditRecordActivity"
+    android:weightSum="1">
 
     <EditText
         android:layout_width="match_parent"
@@ -59,9 +60,18 @@
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="213dp" >
+        android:layout_height="115dp"
+        android:layout_weight="0.41">
 
     </FrameLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/getcoords"
+        android:onClick="onMapClicked" />
 
     <Button
         android:layout_width="wrap_content"

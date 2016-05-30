@@ -51,14 +51,13 @@ public class CreateRecordActivity extends AppCompatActivity {
         img3 = (ImageView) findViewById(R.id.imageView3);
 
         title = (TextView) findViewById(R.id.textView5);
+
         if (cursor.moveToFirst()) {
             String titlefromdb = cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.TITLE));
             title.setText(titlefromdb);
         }
 
-
-
-            if (cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1)) != null) {
+        if (cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1)) != null) {
                 String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1));
                 getImage1(photo1uri);
             }
@@ -173,5 +172,10 @@ public class CreateRecordActivity extends AppCompatActivity {
         addInfo.putExtra("ID",id);
         addInfo.putExtra("thumbnail",thumbnail);
         startActivity(addInfo);
+    }
+
+    public void onDone(View view){
+        Intent recordIntent = new Intent(this.getApplicationContext(),RecordsActivity.class);
+        startActivity(recordIntent);
     }
 }
