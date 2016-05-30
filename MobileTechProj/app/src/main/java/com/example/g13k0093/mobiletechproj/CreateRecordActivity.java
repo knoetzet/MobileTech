@@ -13,6 +13,7 @@ import android.support.annotation.IntegerRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
@@ -47,16 +48,17 @@ public class CreateRecordActivity extends AppCompatActivity {
         cursor = db.getRecord(id);
 
         img1 = (ImageView) findViewById(R.id.imageView);
+        img1.setRotation(90);
         img2 = (ImageView) findViewById(R.id.imageView2);
+        img2.setRotation(90);
         img3 = (ImageView) findViewById(R.id.imageView3);
+        img3.setRotation(90);
 
         title = (TextView) findViewById(R.id.textView5);
         if (cursor.moveToFirst()) {
             String titlefromdb = cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.TITLE));
             title.setText(titlefromdb);
         }
-
-
 
             if (cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1)) != null) {
                 String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1));
@@ -72,7 +74,24 @@ public class CreateRecordActivity extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.record_list:
+                Intent rec = new Intent(this, RecordsActivity.class);
+                startActivity(rec);
+                return true;
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
+            case R.id.action_about:
+                // User chose the "About" item, show the app about...
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     public void getImage1(String photo1uri)
     {

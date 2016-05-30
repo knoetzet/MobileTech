@@ -24,7 +24,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import cz.msebera.android.httpclient.entity.mime.content.ContentBody;
@@ -39,6 +42,13 @@ public class CapturedActivity extends AppCompatActivity  {
     dbHelper db;
     int id;
     int thumbnail;
+    String time;
+    String longitude;
+    String latitude;
+
+
+    Date date;
+    Calendar cal = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +56,9 @@ public class CapturedActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_captured);
         id = getIntent().getIntExtra("ID",0);
         thumbnail = getIntent().getIntExtra("thumbnail",0);
+        time = getIntent().getStringExtra("time");
+        latitude = getIntent().getStringExtra("lat");
+        longitude = getIntent().getStringExtra("lon");
         db = new dbHelper(this);
         getfilepath = getIntent().getStringExtra("pic");
         if(getfilepath != null){
@@ -63,6 +76,7 @@ public class CapturedActivity extends AppCompatActivity  {
 
         if (imgFile.exists()) {
             pic = (ImageView) findViewById(R.id.captureimage);
+            pic.setRotation(90);
 
             Bitmap bmImg = BitmapFactory.decodeFile(getfilepath);
             Bitmap bitmap = Bitmap.createScaledBitmap(bmImg, 300, 300, true);
@@ -111,6 +125,21 @@ public class CapturedActivity extends AppCompatActivity  {
             db.updateOne(id,"photo1",getfilepath);
         }else if(thumbnail == 1) {db.updateOne(id,"photo2",getfilepath);}
         else if(thumbnail == 2){db.updateOne(id,"photo3",getfilepath);}
+
+        if(latitude != null) {
+            db.updateOne(id, "lat", latitude);
+        }
+        if(longitude != null) {
+            db.updateOne(id, "long", longitude);
+        }
+
+        String year = new SimpleDateFormat("yyyy").format(new Date());
+        String month = new SimpleDateFormat("MM").format(new Date());
+        String day = new SimpleDateFormat("dd").format(new Date());
+        db.updateOne(id, "year", year);
+        db.updateOne(id, "month", month);
+        db.updateOne(id, "day", day);
+
 
         Intent now = new Intent(this, CreateRecordActivity.class);
         now.putExtra("ID", id);

@@ -35,6 +35,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -53,6 +54,9 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
     Double timestamp;
     String image;
     int thumbnail;
+
+    Location location = null;
+
 
 
     File mediaFile;
@@ -78,6 +82,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
         id = getIntent().getIntExtra("ID",0);
         thumbnail = getIntent().getIntExtra("thumbnail",0);
         holder = surfaceView.getHolder();
+
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         holder.addCallback(this);
@@ -88,22 +93,18 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                texty.setText("WHY????");
                 String msg = "New Latitude: " + location.getLatitude() + "New Longitude: " + location.getLongitude();
-                Toast.makeText(getBaseContext(), "IN ON LOCATION CHANGE, lat=" + location.getLatitude() + ", lon=" + location.getLongitude(), Toast.LENGTH_LONG).show();
-                //Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
 
             }
 
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
-                texty.setText("WHY????");
+
             }
 
             @Override
             public void onProviderEnabled(String provider) {
-                Toast.makeText(getBaseContext(), "Gps is turned on!! ",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Gps is turned on!! ", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -111,8 +112,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
             public void onProviderDisabled(String provider) {
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
-                Toast.makeText(getBaseContext(), "Gps is turned off!! ",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Gps is turned off!! ", Toast.LENGTH_SHORT).show();
             }
 
         };
@@ -154,12 +154,28 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
                     fos.write(data);
                     fos.close();
                     urio = Uri.fromFile(mediaFile).toString();
-                    Intent cap = new Intent(getApplicationContext(),CapturedActivity.class);
-                    //  Toast.makeText(getApplicationContext(),urio,Toast.LENGTH_LONG).show();
-                    cap.putExtra("pic",urio);
-                    cap.putExtra("ID", id);
-                    cap.putExtra("thumbnail", thumbnail);
-                    startActivity(cap);
+                    if (locationManager != null) {
+                        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if (location != null) {
+                            String latitude = "" + location.getLatitude();
+                            String longitude = "" + location.getLongitude();
+
+                            Intent cap = new Intent(getApplicationContext(), CapturedActivity.class);
+
+                            cap.putExtra("lat", latitude);
+                            cap.putExtra("lon", longitude);
+                            cap.putExtra("pic", urio);
+                            cap.putExtra("ID", id);
+                            cap.putExtra("thumbnail", thumbnail);
+                            startActivity(cap);
+                        }else{
+                            Intent cap = new Intent(getApplicationContext(), CapturedActivity.class);
+                            cap.putExtra("pic", urio);
+                            cap.putExtra("ID", id);
+                            cap.putExtra("thumbnail", thumbnail);
+                            startActivity(cap);
+                        }
+                    }
 
                 } catch (FileNotFoundException e) {
 
@@ -167,6 +183,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
                 }
             }
         };
+        getLocation();
     }
 
     public void refreshCamera() {
@@ -300,43 +317,9 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
 
     public void getLocation(){
 
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
-        Location location = null;
-        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-        if (!isGPSEnabled && !isNetworkEnabled) {
-            // no network provider is enabled
-        } else {
-       //     this.canGetLocation = true;
-            if (isNetworkEnabled) {
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-                if (locationManager != null) {
-                    location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    if (location != null) {
-                        latitude = location.getLatitude();
-                        longitude = location.getLongitude();
-                    }
-                }
-            }
-            // if GPS Enabled get lat/long using GPS Services
-            if (isGPSEnabled) {
-                if (location == null) {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-
-                    if (locationManager != null) {
-                        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if (location != null) {
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                        }
-                    }
-                }
-            }
         }
-   // insert location and time into squile light and photo uri
-}
-
 
     @TargetApi(23)
     private void useCameraFor23() {
@@ -367,17 +350,10 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
 
 
     public void Capture(View view) {
-      //  getLocation();
-        //here must take photo and get location etc
-        // then go to captured page
         camera.takePicture(shutterCallback, rawCallback, jpegCallback);
-
-
 
      //   camera.stopPreview();
      //   camera.release();
-      //   Intent cap = new Intent(this, CapturedActivity.class);
-      //   startActivity(cap);
         }
     }
 
