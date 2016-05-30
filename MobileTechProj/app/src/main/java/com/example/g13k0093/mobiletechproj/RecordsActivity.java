@@ -35,6 +35,9 @@ public class RecordsActivity extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(recordAdapter);
 
+      //  dbHelper db = new dbHelper(this);
+      //  db.insert(0,"hi",null,null,"good job",null);
+
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -53,6 +53,9 @@ public class LoginActivity extends AppCompatActivity {
     Intent reg = new Intent(Intent.ACTION_VIEW, Uri.parse(regUrl));
     private static final int REQUEST_CAMERARESULT = 201;
     final int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+
+
     String preferencefile = "com.biomapp.useraccount.1";
     private SharedPreferences preferencesuser;
     private SharedPreferences.Editor preferenceEditor;
@@ -85,14 +88,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void Check(){
-
-       Toast.makeText(getApplicationContext(), "im checking", Toast.LENGTH_LONG).show();
-
         if(preferencesuser != null) {
             String name = preferencesuser.getString("userid", "none");
-
             if (name != "none") {
-                Toast.makeText(getApplicationContext(), name, Toast.LENGTH_LONG).show();
                 Intent rec = new Intent(getApplicationContext(), RecordsActivity.class);
                 startActivity(rec);
             }
