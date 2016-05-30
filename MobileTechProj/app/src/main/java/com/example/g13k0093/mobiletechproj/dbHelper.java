@@ -121,7 +121,7 @@ public class dbHelper extends SQLiteOpenHelper {
     public long deleteRecord(int id){
         SQLiteDatabase myDB = this.getWritableDatabase();
         return myDB.delete(RECORD_TABLE_NAME,
-                "id = ? ",
+                "_id = ? ",
                 new String[] { Integer.toString(id) });
 
     }

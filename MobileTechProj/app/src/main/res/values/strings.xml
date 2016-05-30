@@ -29,13 +29,12 @@
     <string name="natural">Natural</string>
     <string name="cultivated">Cultivated</string>
     <string name="autoupload">AutoUpload</string>
-    <string name="delete">Delete</string>
     <string name="english">English</string>
     <string name="back">back</string>
     <string name="getcoords">get poisition from map</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps2">Map</string>
     <string name="afrikaans">Afrikaans</string>
+    <string name="upload">upload</string>
+    <string name="deleteit">delete</string>
 </resources>

@@ -177,7 +177,7 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
         }
     }
 
-    public void onButtonClicked(String text){
+    public void OnButtonClicked(String text){
         switch (pos){
             case 0:
                 break;
