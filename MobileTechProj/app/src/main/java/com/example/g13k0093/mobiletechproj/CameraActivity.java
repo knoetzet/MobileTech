@@ -52,6 +52,8 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
     Double timestamp;
     String image;
 
+    File mediaFile;
+    String urio;
 
 
     // Camera variables
@@ -118,7 +120,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
             } else {
                 if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
                     Toast.makeText(this.getApplicationContext(), "Your Permission is needed to get access the camera location", Toast.LENGTH_LONG).show();
-                    requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_ASK_PERMISSIONS);
+                    requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_ASK_PERMISSIONS);
                 } else {
                 }
             }
@@ -147,6 +149,11 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
                     FileOutputStream fos = new FileOutputStream(pictureFile);
                     fos.write(data);
                     fos.close();
+                    urio = Uri.fromFile(mediaFile).toString();
+                    Intent cap = new Intent(getApplicationContext(),CapturedActivity.class);
+                    cap.putExtra("pic",urio);
+                    startActivity(cap);
+
                 } catch (FileNotFoundException e) {
 
                 } catch (IOException e) {
@@ -241,13 +248,10 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
         }
     }
 
-    public static void setCameraDisplayOrientation(Activity activity,
-                                                   int cameraId, android.hardware.Camera camera) {
-        android.hardware.Camera.CameraInfo info =
-                new android.hardware.Camera.CameraInfo();
+    public static void setCameraDisplayOrientation(Activity activity, int cameraId, android.hardware.Camera camera) {
+        android.hardware.Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
         android.hardware.Camera.getCameraInfo(cameraId, info);
-        int rotation = activity.getWindowManager().getDefaultDisplay()
-                .getRotation();
+        int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
         int degrees = 0;
         switch (rotation) {
             case Surface.ROTATION_0: degrees = 0; break;
@@ -271,20 +275,19 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
     }
 
     private File getOutputMediaFile() {
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyCameraApppppp");
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "BioMappImages");
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d("MyCameraApp", "failed to create directory");
+                Log.d("BioMappImages", "failed to create directory");
                 return null;
             }
         }
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                + "IMG_" + timeStamp + ".jpg");
-        String urio = Uri.fromFile(mediaFile).toString();
-        Toast.makeText(getApplicationContext(), urio, Toast.LENGTH_LONG).show();
+
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+
+
         return mediaFile;
     }
 
@@ -361,6 +364,12 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
         //here must take photo and get location etc
         // then go to captured page
         camera.takePicture(shutterCallback, rawCallback, jpegCallback);
+
+        Intent cap = new Intent(getApplicationContext(),CapturedActivity.class);
+     //  Toast.makeText(getApplicationContext(),urio,Toast.LENGTH_LONG).show();
+        cap.putExtra("pic",urio);
+        startActivity(cap);
+
      //   camera.stopPreview();
      //   camera.release();
       //   Intent cap = new Intent(this, CapturedActivity.class);

@@ -3,6 +3,10 @@ package com.example.g13k0093.mobiletechproj;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,24 +15,61 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.entity.mime.content.ContentBody;
+import cz.msebera.android.httpclient.entity.mime.content.InputStreamBody;
 
 public class CapturedActivity extends AppCompatActivity  {
 
     public dbHelper dbhelper;
     Cursor cursor;
-
+    ImageView pic;
+    String getfilepath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_captured);
 
+        getfilepath = getIntent().getStringExtra("pic");
+        if(getfilepath != null){
+            String[] done = getfilepath.split("file://");
+            getfilepath = done[1];
+            getImage();
+        }
+
+    }
+
+
+
+    public void getImage() {
+
+       // Toast.makeText(getApplicationContext(),getfilepath,Toast.LENGTH_LONG).show();
+       // String[] done = name.split("/");
+       // Toast.makeText(getApplicationContext(),done[0],Toast.LENGTH_LONG).show();
+
+        File imgFile = new File(getfilepath);
+
+        if (imgFile.exists()) {
+            pic = (ImageView) findViewById(R.id.captureimage);
+          //  pic.setImageURI(Uri.parse("file:///storage/emulated/0/Pictures/BioMappImages/IMG_20160530_115309.jpg"));
+
+            Bitmap bmImg = BitmapFactory.decodeFile(getfilepath);
+            Bitmap bitmap = Bitmap.createScaledBitmap(bmImg, 300, 300, true);
+            pic.setImageBitmap(bitmap);
+
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,6 +100,7 @@ public class CapturedActivity extends AppCompatActivity  {
 
     //Buttons
 
+<<<<<<< HEAD
     public void onDbClick(View view){
 
 
@@ -70,21 +112,23 @@ public class CapturedActivity extends AppCompatActivity  {
     }
 
 
+=======
+>>>>>>> master
     public void onRetakeClick(View view){
         Intent retake = new Intent(this, CameraActivity.class);
         startActivity(retake);
     }
-    public void onNextPictureClick(View view){
 
-        Intent next = new Intent(this, CameraActivity.class);
-        startActivity(next);
-    }
     public void onNowClick(View view){
 
         Intent now = new Intent(this, EditRecordActivity.class);
+        //now.putExtra("imageuri", )
         startActivity(now);
     }
     public void onLaterClick(View view){
+      //save to database
+        //dbHelper db = new dbHelper(this);
+       // db.insert(0,"none",null,null,"good job",null);
 
         Intent later = new Intent(this, RecordsActivity.class);
         startActivity(later);
