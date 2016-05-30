@@ -9,11 +9,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -27,51 +30,96 @@ public class CreateRecordActivity extends AppCompatActivity {
     int thumbnail;
     dbHelper db;
     Cursor cursor;
-    int thumnailnum;
     ImageView img1;
     ImageView img2;
     ImageView img3;
+    TextView title;
+    String photo1uri;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_record);
-        db = new dbHelper(this);
-        thumbnail = getIntent().getIntExtra("thumb",0);
-        id = getIntent().getIntExtra("ID",0);
+        db = new dbHelper(this.getApplicationContext());
+        thumbnail = getIntent().getIntExtra("thumbnail", -1);
+        id = getIntent().getIntExtra("ID", 0);
         cursor = db.getRecord(id);
-<<<<<<< HEAD
-=======
+        img1 = (ImageView) findViewById(R.id.imageView);
+        img2 = (ImageView) findViewById(R.id.imageView2);
+        img3 = (ImageView) findViewById(R.id.imageView3);
+
+        title = (TextView) findViewById(R.id.textView5);
+        if (cursor.moveToFirst()) {
+            String titlefromdb = cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.TITLE));
+            title.setText(titlefromdb);
+        }
 
 
-        String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO));
->>>>>>> more
-
-
-<<<<<<< HEAD
-        //    String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO));
-
-        img1 = (ImageView)findViewById(R.id.imageView);
-
-        Toast.makeText(getApplicationContext(),photo1uri,Toast.LENGTH_SHORT).show();
-      /*  if(photo1uri != null){
-=======
-        if(photo1uri != null){
->>>>>>> more
-            File imgFile = new File(photo1uri);
-
-            if (imgFile.exists()) {
-                Bitmap bmImg = BitmapFactory.decodeFile(photo1uri);
-                Bitmap bitmap = Bitmap.createScaledBitmap(bmImg, 300, 300, true);
-                img1.setImageBitmap(bitmap);
+            Toast.makeText(this.getApplicationContext(), "im here", Toast.LENGTH_LONG).show();
+            if (cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1)) != null) {
+                Toast.makeText(this.getApplicationContext(), "im here", Toast.LENGTH_LONG).show();
+                String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO1));
+                getImage1(photo1uri);
             }
-        }else{
-            //get uri from gallery
+        
+
+    /*    if(cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO2)) != null) {
+            String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO2));
+            getImage2(photo1uri);
+        }
+        if(cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO3)) != null) {
+            String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO3));
+            getImage3(photo1uri);
         }*/
 
+        // Toast.makeText(getApplicationContext(), title, Toast.LENGTH_SHORT).show();
+        //     Toast.makeText(getApplicationContext(), photo1uri, Toast.LENGTH_SHORT).show();
 
     }
+
+
+    public void getImage1(String photo1uri)
+    {
+        File imgFile = new File(photo1uri);
+
+        if (imgFile.exists()) {
+            Bitmap bmImg = BitmapFactory.decodeFile(photo1uri);
+            Bitmap bitmap = Bitmap.createScaledBitmap(bmImg, 300, 300, true);
+            img1.setImageBitmap(bitmap);
+        } else {
+            //get uri from gallery
+        }
+
+    }
+    public void getImage2(String photo1uri)
+    {
+        File imgFile = new File(photo1uri);
+
+        if (imgFile.exists()) {
+            Bitmap bmImg = BitmapFactory.decodeFile(photo1uri);
+            Bitmap bitmap = Bitmap.createScaledBitmap(bmImg, 300, 300, true);
+            img2.setImageBitmap(bitmap);
+        } else {
+            //get uri from gallery
+        }
+
+    }
+    public void getImage3(String photo1uri)
+    {
+        File imgFile = new File(photo1uri);
+
+        if (imgFile.exists()) {
+            Bitmap bmImg = BitmapFactory.decodeFile(photo1uri);
+            Bitmap bitmap = Bitmap.createScaledBitmap(bmImg, 300, 300, true);
+            img3.setImageBitmap(bitmap);
+        } else {
+            //get uri from gallery
+        }
+
+    }
+
+
 
 
     public void open(View view){
@@ -99,7 +147,7 @@ public class CreateRecordActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Intent cam = new Intent(getBaseContext(), CameraActivity.class);
                 cam.putExtra("ID", id);
-                cam.putExtra("thumb",thumnailnum);
+                cam.putExtra("thumbnail",thumbnail);
                 startActivity(cam);
             }
         });
@@ -111,16 +159,15 @@ public class CreateRecordActivity extends AppCompatActivity {
 
 
     public void ImageClick1(View view){
-        thumnailnum = 0;
+        thumbnail = 0;
        open(view);
-        thumbnail =0;
     }
     public void ImageClick2(View view){
-        thumnailnum = 1;
+        thumbnail = 1;
         open(view);
     }
     public void ImageClick3(View view){
-        thumnailnum = 2;
+        thumbnail = 2;
         open(view);
     }
 

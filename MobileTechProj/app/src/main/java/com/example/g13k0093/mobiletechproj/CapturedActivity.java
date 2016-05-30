@@ -45,7 +45,7 @@ public class CapturedActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_captured);
         id = getIntent().getIntExtra("ID",0);
-        thumbnail = getIntent().getIntExtra("thumb",0);
+        thumbnail = getIntent().getIntExtra("thumbnail",0);
         db = new dbHelper(this);
         getfilepath = getIntent().getStringExtra("pic");
         if(getfilepath != null){
@@ -101,20 +101,20 @@ public class CapturedActivity extends AppCompatActivity  {
     public void onRetakeClick(View view){
         Intent retake = new Intent(this, CameraActivity.class);
         retake.putExtra("ID", id);
-        retake.putExtra("thumb", thumbnail);
+        retake.putExtra("thumbnail", thumbnail);
         startActivity(retake);
     }
 
     public void onNowClick(View view){
 
         if(thumbnail == 0) {
-            db.updateOne(id,dbHelper.PHOTO,getfilepath);
-        }else if(thumbnail == 1) {}
-        else if(thumbnail == 2){}
+            db.updateOne(id,"photo1",getfilepath);
+        }else if(thumbnail == 1) {db.updateOne(id,"photo2",getfilepath);}
+        else if(thumbnail == 2){db.updateOne(id,"photo3",getfilepath);}
 
         Intent now = new Intent(this, CreateRecordActivity.class);
         now.putExtra("ID", id);
-        now.putExtra("thumb", thumbnail);
+        now.putExtra("thumbnail", thumbnail);
         startActivity(now);
     }
     public void onLaterClick(View view){

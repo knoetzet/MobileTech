@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +38,7 @@ public class RecordsActivity extends AppCompatActivity {
         recordAdapter = new RecordListCursorAdapter(this, cursor);
         lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(recordAdapter);
+
 
       //  dbHelper db = new dbHelper(this);
       //  db.insert("jl","hi");

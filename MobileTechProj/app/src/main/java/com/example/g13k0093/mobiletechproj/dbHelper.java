@@ -17,7 +17,9 @@ public class dbHelper extends SQLiteOpenHelper {
     private static final String RECORD_TABLE_NAME = "records";
     public static final String ID = "_id";
     public static final String TITLE = "title";
-    public static final String PHOTO = "photo";
+    public static final String PHOTO1 = "photo1";
+    public static final String PHOTO2 = "photo2";
+    public static final String PHOTO3 = "photo3";
     public static final String PROJECT = "project";
     public static final String STATUS = "status";
     public static final String DETAILS = "details";
@@ -53,7 +55,9 @@ public class dbHelper extends SQLiteOpenHelper {
     private static final String RECORD_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + RECORD_TABLE_NAME + " (" +ID + " INTEGER UNIQUE PRIMARY KEY, "
                     + TITLE + " TEXT, "
-                    + PHOTO + " TEXT, "
+                    + PHOTO1 + " TEXT, "
+                    + PHOTO2 + " TEXT, "
+                    + PHOTO3 + " TEXT, "
                     + PROJECT + " TEXT, "
                     + STATUS+ " TEXT, "
                     + COUNTRY+ " TEXT, "
@@ -101,7 +105,7 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TITLE,title);
-        values.put(PHOTO,photo);
+        values.put(PHOTO1,photo);
         values.put(PROJECT,project);
         values.put(STATUS,project);
         values.put(DETAILS,details);

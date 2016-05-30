@@ -75,6 +75,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button11"
         android:layout_gravity="center_horizontal"
-        android:text="@string/done" />
+        android:text="@string/done"
+        android:onClick="onSaveClicked" />
 
 </LinearLayout>
