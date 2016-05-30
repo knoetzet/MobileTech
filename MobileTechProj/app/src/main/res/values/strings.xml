@@ -3,13 +3,36 @@
     <string name="action_recordlist">record list</string>
     <string name="action_settings">settings</string>
     <string name="action_about">about</string>
-    <string name="about_text"></string>
+    <string name="about_text">BioMapp is a citizen science data capturing tool which allow users to add records of specimens to the ADU Virtual Museum database quickly and easily. Very simply, this application allows users to photograph a specimen for one of the VM projects and the GPS and date information is collected. Records are created easily and the user can edit fields in each record such as the project to which the record belongs. Records can be flagged for automatic upload once WiFi connectivity is available. Please ensure that all photos are as clear as possible. Thank you for using BioMapp.</string>
     <string name="add_info">Add Info</string>
     <string name="save">Save</string>
     <string name="SaveCoords">Save Coordinates</string>
     <string name="title_activity_maps">Map</string>
     <string name="done">Done</string>
-
+    <string name="capture">CAPTURE</string>
+    <string name="retake">RETAKE</string>
+    <string name="noworlater">When would you like to add extra information. </string>
+    <string name="Later">LATER</string>
+    <string name="now">NOW</string>
+    <string name="optional">Optional Information:</string>
+    <string name="select">Select Project (Required):</string>
+    <string name="email">E-mail:</string>
+    <string name="aduid">ADU ID:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="neww">New</string>
+    <string name="language">Language:</string>
+    <string name="flowers">Flowers</string>
+    <string name="fruit">Fruit</string>
+    <string name="scent">Scent</string>
+    <string name="natural">Natural</string>
+    <string name="cultivated">Cultivated</string>
+    <string name="autoupload">AutoUpload</string>
+    <string name="delete">Delete</string>
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="back">back</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

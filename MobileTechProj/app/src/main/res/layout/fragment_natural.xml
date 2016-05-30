@@ -13,7 +13,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Natural"
+            android:text="@string/natural"
             android:id="@+id/radioButton"
             android:checked="false"
             android:layout_above="@+id/radioButton2"
@@ -23,7 +23,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cultivated"
+            android:text="@string/cultivated"
             android:id="@+id/radioButton2"
             android:checked="false"
             android:layout_marginLeft="79dp"

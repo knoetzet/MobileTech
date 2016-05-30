@@ -34,4 +34,28 @@ android:layout_height="wrap_content">
         android:id="@+id/recordStatus"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/autoupload"
+            android:id="@+id/checkBox4"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:id="@+id/button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/checkBox4"
+            android:layout_alignEnd="@+id/checkBox4" />
+    </RelativeLayout>
+
 </LinearLayout>

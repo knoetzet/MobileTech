@@ -22,33 +22,33 @@
     </string-array>
 
     <string-array name="optional_array">
-        <item> Optional Info</item>
-        <item> Country </item>
-        <item> Province </item>
-        <item> Closest Town </item>
+        <item> Opsionele inligting </item>
+        <item> Land</item>
+        <item> Provinsie </item>
+        <item> naaste dorp </item>
         <item> Locality Description </item>
-        <item> Environmental Description </item>
-        <item> Specimen Identity </item>
-        <item> Additional notes </item>
-        <item> Flowers, Fruit and Scent </item>
-        <item> Number of Individuals </item>
+        <item> Ligging Beskrywing </item>
+        <item> Specimen Identiteit </item>
+        <item> bykomende notas </item>
+        <item> Blomme, vrugte en Reuk </item>
+        <item> Natuurlike of aangeplante </item>
         <item> Natural or Cultivated </item>
-        <item> Growth Form </item>
+        <item> Groeivorm </item>
         <item> Nest Count </item>
-        <item> Nest Site </item>
+        <item> Nest Telling </item>
     </string-array>
 
     <string-array name="countries_array">
-        <item> South Africa</item>
+        <item> Suid-Afrika</item>
         <item> Mozambique </item>
-        <item> Zimbabwe </item>
+        <item> Mosambiek </item>
         <item> Malawi </item>
         <item> Uganda </item>
-        <item> Kenya </item>
+        <item> Kenia </item>
         <item> Botswana </item>
     </string-array>
     <string-array name="language_array">
-        <item> English</item>
+        <item> Engels</item>
         <item> Afrikaans </item>
         <item> isiXhosa </item>
     </string-array>

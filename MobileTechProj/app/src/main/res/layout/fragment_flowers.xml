@@ -22,7 +22,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flowers"
+            android:text="@string/flowers"
             android:id="@+id/checkBox"
             android:checked="false"
             android:layout_marginRight="61dp"
@@ -34,7 +34,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fruits"
+            android:text="@string/fruit"
             android:id="@+id/checkBox2"
             android:checked="false"
             android:layout_centerVertical="true"
@@ -44,7 +44,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scent"
+            android:text="@string/scent"
             android:id="@+id/checkBox3"
             android:checked="false"
             android:layout_below="@+id/checkBox2"
