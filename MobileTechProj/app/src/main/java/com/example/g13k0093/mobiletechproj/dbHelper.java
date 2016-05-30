@@ -21,7 +21,6 @@ public class dbHelper extends SQLiteOpenHelper {
     public static final String PROJECT = "project";
     public static final String STATUS = "status";
     public static final String DETAILS = "details";
-
     /*public static final String OBSERVERS = "observers";
     public static final String COUNTRY =
     public static final String PROVINCE =
@@ -51,7 +50,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
 
     private static final String RECORD_TABLE_CREATE =
-            "CREATE TABLE IF NOT EXISTS " + RECORD_TABLE_NAME + " (" +ID + " INT UNIQUE PRIMARY KEY, "
+            "CREATE TABLE IF NOT EXISTS " + RECORD_TABLE_NAME + " (" +ID + " INT UNIQUE PRIMARY KEY AUTOINCREMENT, "
                     + TITLE + " TEXT, "
                     + PHOTO + " TEXT, "
                     + PROJECT + " TEXT, "

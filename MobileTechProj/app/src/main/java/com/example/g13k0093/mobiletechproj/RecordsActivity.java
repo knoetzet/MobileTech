@@ -54,24 +54,11 @@ public class RecordsActivity extends AppCompatActivity {
         // lv.setAdapter(recordAdapter);
     }
 
-    private void displayList(){
-
-        dbhelper = new dbHelper(this.getApplicationContext());
-        cursor = dbhelper.getAllRecords();
-
-        String [] columns = new String[] {
-                dbHelper.TITLE,
-                dbHelper.STATUS
-        };
-        int[] to = new int[]{
-                R.id.recordTitle,
-                R.id.recordStatus
-        };
-
-        dataAdapter = new SimpleCursorAdapter(this, R.layout.record_layout,cursor,columns,to,0);
-        lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(dataAdapter);
-
+    public void newRecord(View view){
+        
     }
+
+
+
 
 }

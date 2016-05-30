@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     String preferencefile = "com.biomapp.useraccount.1";
-
     private SharedPreferences preferencesuser;
     private SharedPreferences.Editor preferenceEditor;
     public static final String myBioMappPREFERENCES = "BioMappUser";
