@@ -10,12 +10,12 @@ android:layout_height="wrap_content">
     android:layout_marginLeft="4px"
     android:layout_marginRight="10px"
     android:layout_marginTop="4px"
-    android:src="@drawable/orchid"
+    android:src="@drawable/placeholder"
     android:id="@+id/rowImage"/>
 
 <LinearLayout
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="164dp"
     android:layout_height="96dp">
     <TextView
         android:layout_width="wrap_content"
@@ -24,12 +24,14 @@ android:layout_height="wrap_content">
         android:text="New Text"
         android:textAllCaps="true"
         android:id="@+id/recordTitle"
-        android:textSize="@dimen/abc_text_size_headline_material" />
+        android:textSize="@dimen/abc_text_size_headline_material"
+        android:layout_gravity="center_horizontal" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.3"
         android:text="New Text"
-        android:id="@+id/recordStatus" />
+        android:id="@+id/recordStatus"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
 </LinearLayout>

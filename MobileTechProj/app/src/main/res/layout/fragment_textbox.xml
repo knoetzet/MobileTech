@@ -9,8 +9,7 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/editText5"
-        android:layout_weight="1"
-        android:text="Enter text here..." />
+        android:layout_weight="1" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

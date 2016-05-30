@@ -10,15 +10,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.g13k0093.mobiletechproj.R;
 
 
 
-public class TextBoxFragment extends Fragment {
+public class TextBoxFragment extends Fragment implements View.OnClickListener {
 
     public interface OnButtonClickedListener {
-        public void onButtonClicked(View button);
+        public void onButtonClicked(String text);
     }
 
     OnButtonClickedListener mCallback;
@@ -42,14 +44,22 @@ public class TextBoxFragment extends Fragment {
     }
 
 
+    EditText theTextBox;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_textbox, container, false);
+        View view =  inflater.inflate(R.layout.fragment_textbox, container, false);
+
+        theTextBox = (EditText) view.findViewById(R.id.editText5);
+
+        Button clicked = (Button) view.findViewById(R.id.button4);
+        clicked.setOnClickListener(this);
+        return view;
     }
 
 
-    public void onClick(View button, View textbox, long id) {
+    public void onClick(View view) {
         // Send the event to the host activity
-        mCallback.onButtonClicked(button);
+       mCallback.onButtonClicked(theTextBox.getText().toString());
     }
 }

@@ -20,7 +20,11 @@ import com.example.g13k0093.mobiletechproj.EditFragments.NumberOfIndividualsFrag
 import com.example.g13k0093.mobiletechproj.EditFragments.ProvinceFragment;
 import com.example.g13k0093.mobiletechproj.EditFragments.TextBoxFragment;
 
-public class EditRecordActivity extends AppCompatActivity /*implements TextBoxFragment.OnButtonClickedListener*/{
+public class EditRecordActivity extends AppCompatActivity implements TextBoxFragment.OnButtonClickedListener{
+
+    dbHelper db;
+    int id;
+
 
     CountriesFragment country = CountriesFragment.newInstance();
     FlowersFruitScentFragment flowers = FlowersFruitScentFragment.newInstance();
@@ -36,19 +40,22 @@ public class EditRecordActivity extends AppCompatActivity /*implements TextBoxFr
     TextBoxFragment textBoxNotes = TextBoxFragment.newInstance();
     TextBoxFragment textBoxNestCount = TextBoxFragment.newInstance();
     TextBoxFragment textBoxNestSite = TextBoxFragment.newInstance();
-    Button townButt;
 
 
-
-    View view;
     Spinner projectList;
     Spinner optionalList;
-    int pos;
+
+    public int pos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_record);
+
+        db = new dbHelper(this);
+
+        id = getIntent().getIntExtra("ID",-1);
 
         projectList = (Spinner) findViewById(R.id.spinner);
         optionalList = (Spinner) findViewById(R.id.spinner2);
@@ -83,15 +90,6 @@ public class EditRecordActivity extends AppCompatActivity /*implements TextBoxFr
                     case 3:
                         //closest town
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,textBoxTown).commit();
-                        townButt = (Button) textBoxTown.getView().findViewById(R.id.button4);
-
-                        townButt.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Toast.makeText(getApplicationContext(),"Works",Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
                         break;
                     case 4:
                         //locality
@@ -144,7 +142,40 @@ public class EditRecordActivity extends AppCompatActivity /*implements TextBoxFr
         });
     }
 
-    public void onButtonClicked(){
+    public void onButtonClicked(String text){
+        switch (pos){
+            case 0:
+                break;
+            case 3:
+                //closest town
+                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                break;
+            case 4:
+                //locality
+                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                break;
+            case 5:
+                //environmental
+                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                break;
+            case 6:
+                //specimen ID
+                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                break;
+            case 7:
+                //notes
+                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                break;
+
+            case 12:
+                //nest count
+                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                break;
+            case 13:
+                //nest site
+                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                break;
+        }
 
     }
 

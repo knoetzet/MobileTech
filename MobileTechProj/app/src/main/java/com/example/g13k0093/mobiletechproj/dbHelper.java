@@ -21,31 +21,32 @@ public class dbHelper extends SQLiteOpenHelper {
     public static final String PROJECT = "project";
     public static final String STATUS = "status";
     public static final String DETAILS = "details";
-    /*public static final String OBSERVERS = "observers";
-    public static final String COUNTRY =
-    public static final String PROVINCE =
-    public static final String NEARESTTOWN =
-    public static final String LOCALITY =
-    public static final String ELEVATION =
-    public static final String LAT =
-    public static final String LONG =
-    public static final String SOURCE =
-    public static final String YEAR =
-    public static final String MONTH =
-    public static final String DAY =
-    public static final String NOTE =
-    public static final String USER_IDENTIFICATION =
-    public static final String NESTCOUNT =
-    public static final String NESTSITE =
-    public static final String ROADKILL =
-    public static final String TAXONID =
-    public static final String TAXONAME =
-    public static final String INSTITUTION_CODE =
-    public static final String COLLECTION_CODE =
-    public static final String CAT_NUMBER =
-    public static final String RECORD_BASIS =
-    public static final String RECORD_STATUS =
-    public static final String IMAGE_URL =*/
+
+    /*public static final String OBSERVERS = "observers";*/
+    public static final String COUNTRY = "country";
+    public static final String PROVINCE = "province";
+    public static final String NEARESTTOWN = "nearesttown";
+    public static final String LOCALITY = "locality";
+    //public static final String ELEVATION =
+    public static final String LAT = "lat";
+    public static final String LONG = "long";
+    //public static final String SOURCE =
+    public static final String YEAR = "year";
+    public static final String MONTH = "month";
+    public static final String DAY = "day";
+    public static final String NOTE = "note";
+    public static final String SPECIES_ID = "speciesid";
+    public static final String NESTCOUNT = "nestcount";
+    public static final String NESTSITE = "nestsite";
+    //public static final String ROADKILL =
+    //public static final String TAXONID =
+    //public static final String TAXONAME =
+    //public static final String INSTITUTION_CODE =
+    //public static final String COLLECTION_CODE =
+    //public static final String CAT_NUMBER =
+    //public static final String RECORD_BASIS =
+    //public static final String RECORD_STATUS =
+    //public static final String IMAGE_URL =*/
 
 
 
@@ -55,6 +56,19 @@ public class dbHelper extends SQLiteOpenHelper {
                     + PHOTO + " TEXT, "
                     + PROJECT + " TEXT, "
                     + STATUS+ " TEXT, "
+                    + COUNTRY+ " TEXT, "
+                    + PROVINCE+ " TEXT, "
+                    + NEARESTTOWN+ " TEXT, "
+                    + LOCALITY+ " TEXT, "
+                    + LAT+ " TEXT, "
+                    + LONG+ " TEXT, "
+                    + YEAR+ " TEXT, "
+                    + MONTH+ " TEXT, "
+                    + DAY+ " TEXT, "
+                    + NOTE+ " TEXT, "
+                    + SPECIES_ID+ " TEXT, "
+                    + NESTCOUNT+ " TEXT, "
+                    + NESTSITE+ " TEXT, "
                     + DETAILS + " TEXT);";
 
     public dbHelper (Context context){
@@ -73,15 +87,11 @@ public class dbHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insert(int id, String title,String photo, String project,String status, String details){
+    public boolean insert( String title, String status){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ID, id);
         values.put(TITLE,title);
-        values.put(PHOTO,photo);
-        values.put(PROJECT,project);
         values.put(STATUS,status);
-        values.put(DETAILS,details);
         myDB.insert(RECORD_TABLE_NAME,null,values);
         return true;
     }
@@ -96,6 +106,11 @@ public class dbHelper extends SQLiteOpenHelper {
         values.put(DETAILS,details);
         myDB.update("contacts", values, "title = ? ", new String[] { title });
         return true;
+    }
+
+    public void updateOne(int id, String column, String value){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        myDB.execSQL("UPDATE records SET " + column + " = " + value + " WHERE " + ID + " = " + id);
     }
 
     public long deleteRecord(int id){
