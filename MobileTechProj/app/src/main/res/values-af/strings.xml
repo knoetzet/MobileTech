@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">BioMapp</string>
+    <string name="action_recordlist">rekord lys</string>
+    <string name="action_settings">instellings</string>
+    <string name="action_about">informasie oor program</string>
+    <string name="about_text">BioMapp is \'n burger wetenskap datavaslegging hulpmiddel wat gebruikers in staat stel om rekords van monsters om die ADU Virtual Museum databasis vinnig en maklik voeg . Baie eenvoudig , hierdie aansoek gebruikers toelaat om \'n eksemplaar te neem vir een van die VM projekte en die GPS en die jongste inligting is ingesamel . Rekords word maklik geskep en die gebruiker kan velde in elke rekord wysig soos die projek waaraan die rekord behoort . Rekords kan gemerk word vir outomatiese oplaai sodra WiFi konneksie is beskikbaar . Maak asseblief seker dat al die foto\'s is so duidelik as moontlik te maak. Dankie vir die gebruik BioMapp .</string>
+    <string name="add_info">Voeg inligting</string>
+    <string name="save">aanvaar</string>
+    <string name="SaveCoords">aanvaar koördinate</string>
+    <string name="title_activity_maps">Kaart</string>
+    <string name="done">Klaar</string>
+    <string name="capture">Neem foto</string>
+    <string name="retake">neem weer</string>
+    <string name="noworlater">Wanneer wil jy ekstra inligting by voeg? </string>
+    <string name="Later">later</string>
+    <string name="now">Nou</string>
+    <string name="optional">Opsionele inligting:</string>
+    <string name="select">Kies Projek (Vereiste):</string>
+    <string name="email">E-pos:</string>
+    <string name="aduid">ADU ID:</string>
+    <string name="password">wagwoord:</string>
+    <string name="login">Teken aan</string>
+    <string name="register">registreer</string>
+    <string name="neww">Nuwe rekord</string>
+    <string name="language">Taal:</string>
+    <string name="flowers">Blomme</string>
+    <string name="fruit">Vrug</string>
+    <string name="scent">reuk</string>
+    <string name="natural">natuurlike</string>
+    <string name="cultivated">gekweek</string>
+    <string name="autoupload">AutoOplaai</string>
+    <string name="delete">verwyder</string>
+    <string name="english">Engels</string>
+    <string name="back">Terug</string>
+
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps2">Map</string>
+</resources>

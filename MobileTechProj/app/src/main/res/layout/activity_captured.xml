@@ -31,7 +31,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Retake"
+            android:text="@string/retake"
             android:id="@+id/retake"
             android:onClick="onRetakeClick"
             android:layout_alignTop="@+id/nextpicture"
@@ -41,7 +41,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="When would you like to add extra information. "
+            android:text="@string/noworlater"
             android:id="@+id/textView4"
             android:autoText="false"
             android:editable="false"
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editlater"
-                android:text="Later"
+                android:text="@string/Later"
                 android:onClick="onLaterClick"
                 android:layout_alignTop="@+id/editnow"
                 android:layout_alignRight="@+id/captureimage"
@@ -77,7 +77,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Now"
+                android:text="@string/now"
                 android:id="@+id/editnow"
                 android:onClick="onNowClick"
                 android:layout_marginLeft="10mm"

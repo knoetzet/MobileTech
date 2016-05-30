@@ -23,7 +23,7 @@ public class CreateRecordActivity extends AppCompatActivity {
 
     static final int GET_GALLERY_PIC = 1;
     static final int PERMISSIONS_READ_EXTERNAL_STORAGE = 2;
-    int id;
+    int id = 1;
     dbHelper db;
     Cursor cursor;
     ImageView img1;
@@ -39,14 +39,12 @@ public class CreateRecordActivity extends AppCompatActivity {
         id = getIntent().getIntExtra("ID",0);
         cursor = db.getRecord(id);
 
-       /* if(cursor.getColumnIndex(dbHelper.PHOTO) != -1) {
+        if(cursor.getColumnIndex(dbHelper.PHOTO) != -1) {
             String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO));
-        }*/
+        }
         img1 = (ImageView)findViewById(R.id.imageView);
 
-
-        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
-      /*  if(photo1uri != null){
+       /*if(photo1uri != null){
             File imgFile = new File(photo1uri);
 
             if (imgFile.exists()) {

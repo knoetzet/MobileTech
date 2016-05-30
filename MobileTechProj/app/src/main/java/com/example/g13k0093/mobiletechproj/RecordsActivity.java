@@ -46,7 +46,7 @@ public class RecordsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent editIntent = new Intent(getApplicationContext(), CreateRecordActivity.class);
-                editIntent.putExtra("ID",position+1);
+               // editIntent.putExtra("ID",position+1);
                 startActivity(editIntent);
             }
         });
@@ -62,7 +62,7 @@ public class RecordsActivity extends AppCompatActivity {
         int id = dbhelper.getRecordsCount() + 1;
         dbhelper.insert(id,"title" + id,"required fields missing");
         Intent createIntent = new Intent(getApplicationContext(), CreateRecordActivity.class);
-        createIntent.putExtra("ID",id);
+        //createIntent.putExtra("ID",id);
         startActivity(createIntent);
     }
 
