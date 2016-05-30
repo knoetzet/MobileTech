@@ -52,6 +52,8 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
     Double longitude;
     Double timestamp;
     String image;
+    int thumbnail;
+
 
     File mediaFile;
     String urio;
@@ -74,6 +76,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
         texty = (TextView) findViewById(R.id.textView6);
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
         id = getIntent().getIntExtra("ID",0);
+        thumbnail = getIntent().getIntExtra("thumb",0);
         holder = surfaceView.getHolder();
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
@@ -370,6 +373,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
      //  Toast.makeText(getApplicationContext(),urio,Toast.LENGTH_LONG).show();
         cap.putExtra("pic",urio);
         cap.putExtra("ID", id);
+        cap.putExtra("thumb", thumbnail);
         startActivity(cap);
 
      //   camera.stopPreview();

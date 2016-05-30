@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         if(preferencesuser != null) {
             String name = preferencesuser.getString("userid", "none");
             if (name != "none") {
-                Intent rec = new Intent(getApplicationContext(), CreateRecordActivity.class);
+                Intent rec = new Intent(getApplicationContext(), RecordsActivity.class);
                 startActivity(rec);
             }
         }

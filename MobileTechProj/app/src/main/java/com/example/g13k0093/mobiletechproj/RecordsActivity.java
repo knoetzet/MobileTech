@@ -36,7 +36,7 @@ public class RecordsActivity extends AppCompatActivity {
         lv.setAdapter(recordAdapter);
 
       //  dbHelper db = new dbHelper(this);
-      //  db.insert(0,"hi",null,null,"good job",null);
+      //  db.insert("jl","hi");
 
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){

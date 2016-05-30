@@ -24,8 +24,10 @@ public class CreateRecordActivity extends AppCompatActivity {
     static final int GET_GALLERY_PIC = 1;
     static final int PERMISSIONS_READ_EXTERNAL_STORAGE = 2;
     int id;
+    int thumbnail;
     dbHelper db;
     Cursor cursor;
+    int thumnailnum;
     ImageView img1;
     ImageView img2;
     ImageView img3;
@@ -36,14 +38,15 @@ public class CreateRecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_record);
         db = new dbHelper(this);
+        thumbnail = getIntent().getIntExtra("thumb",0);
         id = getIntent().getIntExtra("ID",0);
         cursor = db.getRecord(id);
+
+
         String photo1uri = cursor.getString(cursor.getColumnIndex(dbHelper.PHOTO));
 
         img1 = (ImageView)findViewById(R.id.imageView);
 
-
-        Toast.makeText(getApplicationContext(),photo1uri,Toast.LENGTH_SHORT).show();
         if(photo1uri != null){
             File imgFile = new File(photo1uri);
 
@@ -85,6 +88,7 @@ public class CreateRecordActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Intent cam = new Intent(getBaseContext(), CameraActivity.class);
                 cam.putExtra("ID", id);
+                cam.putExtra("thumb",thumnailnum);
                 startActivity(cam);
             }
         });
@@ -96,12 +100,15 @@ public class CreateRecordActivity extends AppCompatActivity {
 
 
     public void ImageClick1(View view){
+        thumnailnum = 0;
        open(view);
     }
     public void ImageClick2(View view){
+        thumnailnum = 1;
         open(view);
     }
     public void ImageClick3(View view){
+        thumnailnum = 2;
         open(view);
     }
 
