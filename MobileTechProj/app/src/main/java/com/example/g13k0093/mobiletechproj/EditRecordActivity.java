@@ -148,31 +148,37 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
                 break;
             case 3:
                 //closest town
+                db.updateOne(id,dbHelper.NEARESTTOWN,text);
                 Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
                 break;
             case 4:
                 //locality
+                db.updateOne(id,dbHelper.LOCALITY,text);
                 Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
                 break;
             case 5:
                 //environmental
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"No column to update",Toast.LENGTH_SHORT).show();
                 break;
             case 6:
                 //specimen ID
+                db.updateOne(id,dbHelper.SPECIES_ID,text);
                 Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
                 break;
             case 7:
                 //notes
+                db.updateOne(id,dbHelper.NOTE,text);
                 Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
                 break;
 
             case 12:
                 //nest count
+                db.updateOne(id,dbHelper.NESTCOUNT,text);
                 Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
                 break;
             case 13:
                 //nest site
+                db.updateOne(id,dbHelper.NESTSITE,text);
                 Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
                 break;
         }

@@ -1,6 +1,8 @@
 package com.example.g13k0093.mobiletechproj;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class RecordsActivity extends AppCompatActivity {
@@ -42,9 +45,9 @@ public class RecordsActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent editIntent = new Intent(getApplicationContext(), EditRecordActivity.class);
+                Intent editIntent = new Intent(getApplicationContext(), CreateRecordActivity.class);
                 editIntent.putExtra("ID",position+1);
-                Globals.CURRENT_ID = position+1;
+                startActivity(editIntent);
             }
         });
 
@@ -55,8 +58,14 @@ public class RecordsActivity extends AppCompatActivity {
     }
 
     public void newRecord(View view){
-        
+
+        int id = dbhelper.getRecordsCount() + 1;
+        dbhelper.insert(id,"title","required fields missing");
+        Intent createIntent = new Intent(getApplicationContext(), CreateRecordActivity.class);
+        createIntent.putExtra("ID",id);
+        startActivity(createIntent);
     }
+
 
 
 

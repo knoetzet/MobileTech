@@ -51,7 +51,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
 
     private static final String RECORD_TABLE_CREATE =
-            "CREATE TABLE IF NOT EXISTS " + RECORD_TABLE_NAME + " (" +ID + " INT UNIQUE PRIMARY KEY AUTOINCREMENT, "
+            "CREATE TABLE IF NOT EXISTS " + RECORD_TABLE_NAME + " (" +ID + " INTEGER UNIQUE PRIMARY KEY, "
                     + TITLE + " TEXT, "
                     + PHOTO + " TEXT, "
                     + PROJECT + " TEXT, "
@@ -87,9 +87,10 @@ public class dbHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insert( String title, String status){
+    public boolean insert(int id, String title, String status){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(ID,id);
         values.put(TITLE,title);
         values.put(STATUS,status);
         myDB.insert(RECORD_TABLE_NAME,null,values);
@@ -120,6 +121,16 @@ public class dbHelper extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
 
     }
+
+    public int getRecordsCount() {
+        String countQuery = "SELECT  * FROM " + RECORD_TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int cnt = cursor.getCount();
+        cursor.close();
+        return cnt;
+    }
+
 
     public Cursor getAllRecords() {
         SQLiteDatabase myDB = this.getReadableDatabase();

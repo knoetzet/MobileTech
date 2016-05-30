@@ -100,20 +100,6 @@ public class CapturedActivity extends AppCompatActivity  {
 
     //Buttons
 
-<<<<<<< HEAD
-    public void onDbClick(View view){
-
-
-        dbHelper helper = new dbHelper(this.getApplicationContext());
-       // helper.insert(1,"title1","photo1","project1","status1","details1");
-        Toast.makeText(this.getApplicationContext(),"FUCK",Toast.LENGTH_LONG).show();
-
-
-    }
-
-
-=======
->>>>>>> master
     public void onRetakeClick(View view){
         Intent retake = new Intent(this, CameraActivity.class);
         startActivity(retake);

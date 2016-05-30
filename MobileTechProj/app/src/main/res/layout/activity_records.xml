@@ -16,15 +16,17 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="374dp"
-        android:id="@+id/listView" />
+        android:layout_height="237dp"
+        android:id="@+id/listView"
+        android:layout_weight="0.87" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New"
         android:id="@+id/button9"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="newRecord" />
 
 
 </LinearLayout>
