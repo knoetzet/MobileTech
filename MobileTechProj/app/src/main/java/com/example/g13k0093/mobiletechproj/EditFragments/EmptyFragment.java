@@ -1,7 +1,7 @@
 package com.example.g13k0093.mobiletechproj.EditFragments;
 
 /**
- * Created by G13K0093 on 2016-05-28.
+ * Created by G13K0093 on 2016-05-29.
  */
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,17 +12,15 @@ import android.view.ViewGroup;
 
 import com.example.g13k0093.mobiletechproj.R;
 
-public class TextBoxFragment extends Fragment{
-
-    public static TextBoxFragment newInstance() {
-        return new TextBoxFragment();
+public class EmptyFragment extends Fragment{
+    public static EmptyFragment newInstance() {
+        return new EmptyFragment();
     }
 
-    public TextBoxFragment(){}
+    public EmptyFragment(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        return inflater.inflate(R.layout.fragment_textbox,container,false);
-
+        return inflater.inflate(R.layout.fragment_empty,container,false);
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="project_array">
+        <item> Project </item>
         <item> BirdPIX (Bird pictures) </item>
         <item> BOP (Birds with odd plumages) </item>
         <item> DungBeetleMAP (Dung Beetles) </item>
@@ -20,6 +21,7 @@
         <item> TreeMAP (Tree Atlas) </item>
     </string-array>
     <string-array name="optional_array">
+        <item> Optional Info</item>
         <item> Country </item>
         <item> Province </item>
         <item> Closest Town </item>

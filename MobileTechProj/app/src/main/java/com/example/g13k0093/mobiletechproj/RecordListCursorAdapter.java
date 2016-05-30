@@ -13,7 +13,7 @@ import android.widget.TextView;
  * Created by G13K0093 on 2016-05-26.
  */
 public class RecordListCursorAdapter extends CursorAdapter{
-    public RecordListCursorAdapter (Context context, Cursor cursor, int flags){
+    public RecordListCursorAdapter (Context context, Cursor cursor){
         super(context,cursor,0);
     }
     @Override
@@ -23,14 +23,14 @@ public class RecordListCursorAdapter extends CursorAdapter{
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        // Find fields to populate in inflated template
+
         TextView tvTitle = (TextView) view.findViewById(R.id.recordTitle);
         TextView tvStatus = (TextView) view.findViewById(R.id.recordStatus);
         ImageView imageView = (ImageView) view.findViewById(R.id.rowImage);
-        // Extract properties from cursor
+
         String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
-        int status = cursor.getInt(cursor.getColumnIndexOrThrow(""));
-        // Populate fields with extracted properties
+        String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
+
         tvTitle.setText(title);
         tvStatus.setText(status);
     }

@@ -25,10 +25,6 @@ public class LoginActivity extends AppCompatActivity  {
     private static final int REQUEST_CAMERARESULT = 201;
     final int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
-
-
-
-
     Button button;
 
     @Override

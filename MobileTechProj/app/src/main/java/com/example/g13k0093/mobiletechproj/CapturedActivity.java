@@ -2,6 +2,7 @@ package com.example.g13k0093.mobiletechproj;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,7 +21,6 @@ import java.util.List;
 public class CapturedActivity extends AppCompatActivity  {
 
     public dbHelper dbhelper;
-    TextView display;
     Cursor cursor;
 
 
@@ -60,22 +60,15 @@ public class CapturedActivity extends AppCompatActivity  {
     //Buttons
 
     public void onDbClick(View view){
-       // Toast.makeText(this.getApplicationContext(),"FUCK",Toast.LENGTH_LONG).show();
 
-       dbHelper helper = new dbHelper(this.getApplicationContext());
-        //helper.deleteRecord(1);
-        //helper.insert(1,"titty","phot","proj","tails");
-        TextView display = (TextView) findViewById(R.id.textView5);
-      //  Toast.makeText(this.getApplicationContext(),"FUCK",Toast.LENGTH_LONG).show();
-        Cursor cursor  = helper.getRecord(1);
-        cursor.moveToFirst();
-       display.setText(cursor.getString(cursor.getColumnIndex(helper.TITLE)));
+
+        dbHelper helper = new dbHelper(this.getApplicationContext());
+        helper.insert(1,"title1","photo1","project1","status1","details1");
+        Toast.makeText(this.getApplicationContext(),"FUCK",Toast.LENGTH_LONG).show();
+
+
     }
 
-    public void onMapClick(View view){
-        Intent map = new Intent(this, MapsActivity.class);
-        startActivity(map);
-    }
 
     public void onRetakeClick(View view){
         Intent retake = new Intent(this, CameraActivity.class);
