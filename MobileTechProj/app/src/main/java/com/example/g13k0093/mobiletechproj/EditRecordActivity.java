@@ -194,12 +194,12 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
             case 3:
                 //closest town
                 db.updateOne(id,dbHelper.NEARESTTOWN,text);
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),text + "added to record",Toast.LENGTH_SHORT).show();
                 break;
             case 4:
                 //locality
                 db.updateOne(id,dbHelper.LOCALITY,text);
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),text + "added to record",Toast.LENGTH_SHORT).show();
                 break;
             case 5:
                 //environmental
@@ -208,23 +208,23 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
             case 6:
                 //specimen ID
                 db.updateOne(id,dbHelper.SPECIES_ID,text);
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),text + "added to record",Toast.LENGTH_SHORT).show();
                 break;
             case 7:
                 //notes
                 db.updateOne(id,dbHelper.NOTE,text);
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),text + "added to record",Toast.LENGTH_SHORT).show();
                 break;
 
             case 12:
                 //nest count
                 db.updateOne(id,dbHelper.NESTCOUNT,text);
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),text + "added to record",Toast.LENGTH_SHORT).show();
                 break;
             case 13:
                 //nest site
                 db.updateOne(id,dbHelper.NESTSITE,text);
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),text + "added to record",Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -237,6 +237,7 @@ public class EditRecordActivity extends AppCompatActivity implements TextBoxFrag
     }
     public void onSaveClicked(View view){
         db.updateOne(id,dbHelper.TITLE,title.getText().toString());
+        db.updateOne(id,dbHelper.PROJECT,projectList.getSelectedItem().toString());
         Intent recordIntent = new Intent(this.getApplicationContext(),CreateRecordActivity.class);
         recordIntent.putExtra("ID",id);
         startActivity(recordIntent);

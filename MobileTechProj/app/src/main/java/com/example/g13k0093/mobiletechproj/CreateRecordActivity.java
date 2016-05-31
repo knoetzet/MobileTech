@@ -48,7 +48,7 @@ public class CreateRecordActivity extends AppCompatActivity {
     String fromGallery;
     ArrayAdapter adapter;
 
-   String [] dBfields = new String[9];
+   String [] dBfields = new String[10];
 
 
     @Override
@@ -286,62 +286,67 @@ public class CreateRecordActivity extends AppCompatActivity {
 
     public void populateFields(Cursor cursor,String[] dBfields){
 
-        dBfields[0] = "DATE:";
-        dBfields[1] = "LATITUDE:";
-        dBfields[2] = "LONGITUDE:";
-        dBfields[3] = "NEAREST TOWN:";
-        dBfields[4] = "LOCALITY:";
-        dBfields[5] = "SPECIES ID:";
-        dBfields[6] = "ADDITIONAL NOTES:";
-        dBfields[7] = "NEST COUNT:";
-        dBfields[8] = "NEST SITE:";
+        dBfields[0] = "PROJECT:";
+        dBfields[1] = "DATE:";
+        dBfields[2] = "LATITUDE:";
+        dBfields[3] = "LONGITUDE:";
+        dBfields[4] = "NEAREST TOWN:";
+        dBfields[5] = "LOCALITY:";
+        dBfields[6] = "SPECIES ID:";
+        dBfields[7] = "ADDITIONAL NOTES:";
+        dBfields[8] = "NEST COUNT:";
+        dBfields[9] = "NEST SITE:";
 
         if (cursor.moveToFirst()) {
             String titlefromdb = cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.TITLE));
             title.setText(titlefromdb);
+            if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.PROJECT))!=null)
+            {
+                dBfields[0] = "PROJECT:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.PROJECT));
+            }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.YEAR))!=null)
             {
-                dBfields[0] = "DATE:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.YEAR));
+                dBfields[1] = "DATE:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.YEAR));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.MONTH))!=null)
             {
-                dBfields[0] += "-" + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.MONTH));
+                dBfields[1] += "-" + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.MONTH));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.DAY))!=null)
             {
-                dBfields[0] += "-" + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.DAY));
+                dBfields[1] += "-" + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.DAY));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LAT))!=null)
             {
-                dBfields[1] = "LATITUDE:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LAT));
+                dBfields[2] = "LATITUDE:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LAT));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LONG))!=null)
             {
-                dBfields[2] = "LONGITUDE:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LONG));
+                dBfields[3] = "LONGITUDE:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LONG));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NEARESTTOWN))!=null)
             {
-                dBfields[3] = "NEAREST TOWN:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NEARESTTOWN));
+                dBfields[4] = "NEAREST TOWN:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NEARESTTOWN));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LOCALITY))!=null)
             {
-                dBfields[4] = "LOCALITY:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LOCALITY));
+                dBfields[5] = "LOCALITY:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.LOCALITY));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.SPECIES_ID))!=null)
             {
-                dBfields[5] = "SPECIES ID:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.SPECIES_ID));
+                dBfields[6] = "SPECIES ID:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.SPECIES_ID));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NOTE))!=null)
             {
-                dBfields[6] = "ADDITIONAL NOTES:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NOTE));
+                dBfields[7] = "ADDITIONAL NOTES:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NOTE));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NESTCOUNT))!=null)
             {
-                dBfields[7] = "NEST COUNT:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NESTCOUNT));
+                dBfields[8] = "NEST COUNT:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NESTCOUNT));
             }
             if(cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NESTSITE))!=null)
             {
-                dBfields[8] = "NEST SITE:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NESTSITE));
+                dBfields[9] = "NEST SITE:  " + cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.NESTSITE));
             }
 
 

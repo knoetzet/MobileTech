@@ -52,4 +52,16 @@
         <item> Afrikaans </item>
         <item> isiXhosa </item>
     </string-array>
+    <string-array name="province_array">
+        <item> Eastern Cape</item>
+        <item> Western Cape </item>
+        <item> Kwa-Zulu  </item>
+        <item> etc  </item>
+    </string-array>
+    <string-array name="growth_array">
+        <item> Herbacious</item>
+        <item> Woody </item>
+        <item> etc  </item>
+        <item> etc  </item>
+    </string-array>
 </resources>
