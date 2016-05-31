@@ -152,8 +152,27 @@ public class CapturedActivity extends AppCompatActivity  {
       //save to database
         //dbHelper db = new dbHelper(this);
        // db.insert(0,"none",null,null,"good job",null);
+        if(thumbnail == 0) {
+            db.updateOne(id,"photo1",getfilepath);
+        }else if(thumbnail == 1) {db.updateOne(id,"photo2",getfilepath);}
+        else if(thumbnail == 2){db.updateOne(id,"photo3",getfilepath);}
 
-        Intent later = new Intent(this, CreateRecordActivity.class);
+        if(latitude != null) {
+            db.updateOne(id, "lat", latitude);
+        }
+        if(longitude != null) {
+            db.updateOne(id, "long", longitude);
+        }
+
+        String year = new SimpleDateFormat("yyyy").format(new Date());
+        String month = new SimpleDateFormat("MM").format(new Date());
+        String day = new SimpleDateFormat("dd").format(new Date());
+        db.updateOne(id, "year", year);
+        db.updateOne(id, "month", month);
+        db.updateOne(id, "day", day);
+
+
+        Intent later = new Intent(this, RecordsActivity.class);
         startActivity(later);
     }
 
